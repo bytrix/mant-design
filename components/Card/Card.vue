@@ -31,13 +31,13 @@ export default {
 </script>
 
 <style lang="scss">
-$radius: 18px;
 .mant-card {
-    background-color: #1a1f28;
-    border: 1px solid #24282d;
-    border-radius: $radius;
+    background-color: $block-bg-color;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
     text-align: left;
     margin-bottom: 32px;
+    color: $text-color;
     .non-footer {
         padding: 24px;
         .header-wrapper {
@@ -48,15 +48,15 @@ $radius: 18px;
         }
     }
     .title {
-        color: #fbfdfd;
+        color: $heading-color;
         font-weight: bolder;
         font-size: 20px;
         margin-bottom: 8px;
     }
     .footer {
-        background-color: #222c34;
+        background-color: $block-bg-color-secondary;
         padding: 16px 24px;
-        border-radius: 0px 0px $radius $radius;
+        border-radius: 0px 0px $border-radius $border-radius;
         display: flex;
         flex-direction: row;
         div:first-child {

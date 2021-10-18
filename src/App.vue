@@ -23,6 +23,7 @@
     </Card>
 
     <Input />
+    <Input size="large" />
 
     <Button>按钮</Button>
     <Button type="primary">按钮</Button>
@@ -51,7 +52,6 @@
 </template>
 
 <script>
-// import HelloWorld from '../components/HelloWorld.vue'
 import Button from '../components/Button'
 import Card from '../components/Card'
 import Checkbox from '../components/Checkbox'
@@ -63,7 +63,6 @@ import DropdownItem from '../components/Dropdown/Item'
 export default {
   name: 'App',
   components: {
-    // HelloWorld,
     Button,
     Card,
     Checkbox,
@@ -83,5 +82,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   margin-top: 60px;
+}
+html {
+  background-color: $bg-color;
+}
+::selection {
+  background-color: darken($color: $text-color, $amount: 30);
 }
 </style>

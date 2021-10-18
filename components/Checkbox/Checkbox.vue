@@ -24,7 +24,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .checkbox-inner+span {
     margin-left: 8px;
 }
@@ -33,10 +33,11 @@ export default {
 }
 .mant-checkbox {
     cursor: pointer;
-    color: #909598;
+    // color: #909598;
+    color: $text-color;
 }
 .checkbox-inner {
-    border: 1px solid #909598;
+    border: 1px solid $text-color;
     width: 16px;
     height: 16px;
     border-radius: 4px;
@@ -49,8 +50,9 @@ export default {
     border: 2px solid transparent;
 }
 .checkbox--checked {
-    background-color: #bbe666;
-    border-color: #bbe666;
+    background-color: $primary-color;
+    border-color: $primary-color;
+    transition: $duration;
 }
 .checkbox--checked::after {
     content: "";

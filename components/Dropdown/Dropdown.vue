@@ -41,9 +41,9 @@ export default {
 <style lang="scss">
 .mant-dropdown {
     padding: 8px 18px;
-    color: #909598;
+    color: $text-color;
     cursor: pointer;
-    transition: 0.2s;
+    transition: $duration;
     .text {
         margin: 0px 12px;
     }
@@ -52,7 +52,7 @@ export default {
     }
 }
 .mant-dropdown:hover {
-  color: lighten($color: #909598, $amount: 10);
+  color: lighten($color: $text-color, $amount: 10);
 }
 .mant-dropdown-menu {
     background-color: #1a1f28;

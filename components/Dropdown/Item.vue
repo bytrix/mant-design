@@ -37,7 +37,6 @@ export default {
             this.showMenu = true
             this.menuLeft = itemRef.offsetWidth
             this.menuTop = itemRef.offsetTop
-            // console.log(this.$refs.item.offsetTop)
         },
         onMenuPopup() {
             console.log("onMenuPopup")
@@ -57,7 +56,7 @@ export default {
     // background-color: #1a1f28;
     padding: 8px 18px 8px 18px;
     min-width: 160px;
-    color: #909598;
+    color: $text-color;
     cursor: pointer;
     transition: 0.2s;
     .text {
@@ -83,7 +82,7 @@ export default {
 }
 .mant-dropdown-item:hover {
     // background-color: darken($color: #1a1f28, $amount: 3);
-    color:lighten($color: #909598, $amount: 20);
+    color:lighten($color: $text-color, $amount: 20);
 }
 
 

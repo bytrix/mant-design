@@ -40,6 +40,6 @@ export default {
   }
 }
 .mant-text--primary {
-  color: #bbe666;
+  color: $primary-color;
 }
 </style>

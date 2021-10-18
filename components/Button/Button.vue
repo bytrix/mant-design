@@ -78,11 +78,11 @@ export default {
     border: none;
     padding: 8px 18px;
     margin: 0px 8px;
-    border-radius: 4px;
     cursor: pointer;
     height: 32px;
     border-radius: 16px;
     font-weight: bolder;
+    user-select: none;
     .icon {
         margin-right: 8px;
     }
@@ -93,27 +93,27 @@ export default {
 }
 .mant-btn--plain {
     background-color: transparent !important;
-    border: 1px solid #30353e;
+    border: 1px solid $border-color;
 }
 .mant-btn--default {
-    background-color: #272f39;
-    color: #757a87;
+    background-color: lighten($color: $block-bg-color, $amount: 6);
+    color: $text-color;
 }
 .mant-btn--link {
     background-color: transparent;
-    color: #757a87;
+    color: $text-color;
 }
 .mant-btn-text--primary {
-    color: #bbe666;
+    color: $primary-color;
 }
 .mant-btn--primary {
-    background-color: #bbe666;
-    color: #253615;
+    background-color: $primary-color;
+    color: $text-color-dark;
 }
 .mant-btn--large {
     border-radius: 22px;
     height: 44px;
     padding: 8px 28px;
-    font-size: 16px;
+    font-size: $font-size-lg;
 }
 </style>
