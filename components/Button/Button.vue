@@ -11,28 +11,28 @@
             'mant-btn-text--primary': active
         },
     ]">
-      <!-- <Icon
+      <Icon
         v-if="icon && iconPosition=='left'"
         :class="{icon: $slots.default !== undefined}"
-        :icon="icon" /> -->
+        :icon="icon" />
       <slot></slot>
-      <!-- <Icon
+      <Icon
         v-if="icon && iconPosition=='right'"
         :class="{
             mgl8: true,
             icon: $slots.default !== undefined
         }"
-        :icon="icon" /> -->
+        :icon="icon" />
   </button>
 </template>
 
 <script>
-// import Icon from '../Icon/index'
+import Icon from '../Icon'
 // import { defineComponent } from 'vue'
 export default {
-    name: "Button",
+    name: "MantButton",
     components: {
-        // Icon
+        Icon
     },
     methods: {
         onClick(e) {
