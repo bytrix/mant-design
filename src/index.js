@@ -1,15 +1,18 @@
 /* eslint-disable */
 import MantButton from '../components/Button'
-import MantText from '../components/Text/index'
-import MantCard from '../components/Card/index'
-import MantTag from '../components/Tag/index'
-import MantCheckbox from '../components/Checkbox/index'
-import MantTabs from '../components/Tabs/index'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faUser, faClock, faCoins, faArrowRight, faBookmark, faPlus } from '@fortawesome/free-solid-svg-icons'
+import MantText from '../components/Text'
+import MantCard from '../components/Card'
+import MantTag from '../components/Tag'
+import MantCheckbox from '../components/Checkbox'
+import MantTabs from '../components/Tabs'
+import MantDropdown from '../components/Dropdown'
+// import MantDropdownItem from '../components/Dropdown/Item'
 
-library.add(faUser, faClock, faCoins, faArrowRight, faBookmark, faPlus)
+// import { library } from '@fortawesome/fontawesome-svg-core'
+// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+// import { faUser, faClock, faCoins, faArrowRight, faBookmark, faPlus, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
+
+// library.add(faUser, faClock, faCoins, faArrowRight, faBookmark, faPlus, faMapMarkerAlt)
 
 const components = [
     MantButton,
@@ -17,12 +20,14 @@ const components = [
     MantCard,
     MantTag,
     MantCheckbox,
-    MantTabs
+    MantTabs,
+    MantDropdown,
+    // MantDropdownItem
 ]
 
 const install = (app) => {
     components.forEach((item) => app.component(item.name, item))
-    app.component("Icon", FontAwesomeIcon)
+    // app.component("Icon", FontAwesomeIcon)
     // app.component("Button", MantButton)
 }
 

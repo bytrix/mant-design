@@ -33,6 +33,7 @@ export default {
 }
 .mant-checkbox {
     cursor: pointer;
+    color: #909598;
 }
 .checkbox-inner {
     border: 1px solid #909598;
@@ -59,6 +60,6 @@ export default {
     border-top: none;
     border-right: none;
     display: inline-block;
-    transform: rotate(-45deg) translate(90%, -30%);
+    transform: rotate(-45deg) translate(4px, -4px);
 }
 </style>
