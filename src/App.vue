@@ -1,6 +1,19 @@
 <template>
   <div id="app">
 
+    <Spin :loading="true">
+      <Card title="hi">
+        测试
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae sunt vero, quas quo, et perferendis exercitationem cumque quae explicabo deserunt beatae? Itaque repellendus quisquam excepturi praesentium tempore explicabo molestiae nobis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae sunt vero, quas quo, et perferendis exercitationem cumque quae explicabo deserunt beatae? Itaque repellendus quisquam excepturi praesentium tempore explicabo molestiae nobis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae sunt vero, quas quo, et perferendis exercitationem cumque quae explicabo deserunt beatae? Itaque repellendus quisquam excepturi praesentium tempore explicabo molestiae nobis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae sunt vero, quas quo, et perferendis exercitationem cumque quae explicabo deserunt beatae? Itaque repellendus quisquam excepturi praesentium tempore explicabo molestiae nobis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae sunt vero, quas quo, et perferendis exercitationem cumque quae explicabo deserunt beatae? Itaque repellendus quisquam excepturi praesentium tempore explicabo molestiae nobis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae sunt vero, quas quo, et perferendis exercitationem cumque quae explicabo deserunt beatae? Itaque repellendus quisquam excepturi praesentium tempore explicabo molestiae nobis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae sunt vero, quas quo, et perferendis exercitationem cumque quae explicabo deserunt beatae? Itaque repellendus quisquam excepturi praesentium tempore explicabo molestiae nobis.
+      </Card>
+    </Spin>
+
     <Card title="下拉菜单">
       <div style="display: flex; flex-direction: row">
         <Dropdown icon="map-marker-alt" text="Unites State, NY">
@@ -22,14 +35,15 @@
       </div>
     </Card>
 
-    <Input />
-    <Input size="large" />
-
-    <Button>按钮</Button>
-    <Button type="primary">按钮</Button>
-    <Button type="primary" icon="plus">新建</Button>
-    <Button type="primary" icon="plus" size="large">大号</Button>
-    <MantText type="primary">文本</MantText>
+    <Spin :loading="true">
+      <Input />
+      <Input size="large" />
+      <Button>按钮</Button>
+      <Button type="primary">按钮</Button>
+      <Button type="primary" icon="plus">新建</Button>
+      <Button type="primary" icon="plus" size="large">大号</Button>
+      <MantText type="primary">文本</MantText>
+    </Spin>
     <Card>
       <template slot="header">
         <div class="title">aa</div>
@@ -59,6 +73,7 @@ import MantText from '../components/Text'
 import Input from '../components/Input'
 import Dropdown from '../components/Dropdown'
 import DropdownItem from '../components/Dropdown/Item'
+import Spin from '../components/Spin'
 
 export default {
   name: 'App',
@@ -69,7 +84,8 @@ export default {
     MantText,
     Dropdown,
     DropdownItem,
-    Input
+    Input,
+    Spin
   }
 }
 </script>

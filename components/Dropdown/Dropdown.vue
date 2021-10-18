@@ -62,6 +62,7 @@ export default {
     flex-direction: column;
     position: absolute;
     transform: translate(-18px, 8px);
+    z-index: 1;
 }
 
 .slide-fade-enter-active {
