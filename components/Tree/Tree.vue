@@ -5,13 +5,15 @@
         :key="item.id"
         >
         <div
-            draggable="true"
+            draggable="false"
             :id="item._id"
             @dragstart="onDragStart"
             @drop="onDrop"
             @dragover="allowDropNest"
         >
-            <TreeItem :item="item" :indent="0" @itemClick="onItemClick" />
+            <TreeItem :item="item" :indent="0" @itemClick="onItemClick">
+                <slot name="add"></slot>
+            </TreeItem>
         </div>
         <div
             class="drag-line"
@@ -33,9 +35,15 @@ export default {
         }
     },
     created() {
-        eventBus.$on("itemClick", item => {
-            this.$emit("itemClick", item)
+        eventBus.$on("expand", item => {
+            this.$emit("expand", item)
         })
+        eventBus.$on("add", item => {
+            this.$emit("add", item)
+        })
+    },
+    mounted() {
+        // console.log("TreeItem mounted", this.$slots.item[0])
     },
     props: {
         data: {
@@ -48,7 +56,7 @@ export default {
     },
     methods: {
         onItemClick(item) {
-            this.$emit("itemClick", item)
+            this.$emit("expand", item)
         },
         onDragStart(e) {
             const id = e.target.id

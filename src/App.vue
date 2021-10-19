@@ -1,10 +1,30 @@
 <template>
   <div id="app">
-
-    <Tree
-      :data="treeData"
-      @itemClick="onItemClick"
-    />
+    <Row>
+      <Col :flex="2">
+        <Tree
+          :data="treeData"
+          v-on="{
+            expand: onItemClick,
+            add: onItemAdd
+          }"
+        >
+          <!-- <div style="background-color: red"> -->
+            <template slot="add">
+              <Button size="small" :icon="['fal', 'plus']" circle></Button>
+              <!-- <button>add</button> -->
+            </template>
+          <!-- </div> -->
+        </Tree>
+      </Col>
+      <Col :flex="4">
+        <textarea class="editor" contenteditable v-model="content"></textarea>
+      </Col>
+      <Col :flex="4">
+        <div class="preview" v-html="marked(content)"></div>
+        <!-- {{marked(content)}} -->
+      </Col>
+    </Row>
 
     <Spin :loading="true">
       <Card title="hi">
@@ -80,11 +100,15 @@ import Dropdown from '../components/Dropdown'
 import DropdownItem from '../components/Dropdown/Item'
 import Spin from '../components/Spin'
 import Tree from '../components/Tree'
+import Row from '../components/Row'
+import Col from '../components/Col'
+import marked from 'marked'
 
 export default {
   name: 'App',
   data() {
     return {
+      content: "# Hello, world!",
       // treeData: [
       //   {
       //     id: "1",
@@ -147,6 +171,10 @@ export default {
     }
   },
   methods: {
+    marked,
+    onItemAdd(item) {
+      console.log("onAdd", item.title)
+    },
     makeTree(data) {
       return data
     },
@@ -157,6 +185,10 @@ export default {
       } else {
         console.log("打开文档", item.title)
       }
+    },
+    onContentChange(e) {
+      console.log("onContentChange", e.target.innerText)
+      this.content = e.target.innerText
     }
   },
   components: {
@@ -168,7 +200,9 @@ export default {
     DropdownItem,
     Input,
     Spin,
-    Tree
+    Tree,
+    Row,
+    Col
   }
 }
 </script>
@@ -187,5 +221,25 @@ html {
 }
 ::selection {
   background-color: darken($color: $text-color, $amount: 30);
+}
+.editor, .preview {
+  text-align: left;
+  padding: 12px;
+  color: $text-color;
+}
+.editor {
+  resize: none;
+  box-sizing: border-box;
+  background-color: $block-bg-color-secondary;
+  outline: none;
+  font-size: $font-size-base;
+  outline: none;
+  font-family: 'Yahei';
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+.preview {
+  background-color: $block-bg-color;
 }
 </style>

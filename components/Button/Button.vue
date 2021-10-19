@@ -116,4 +116,10 @@ export default {
     padding: 8px 28px;
     font-size: $font-size-lg;
 }
+.mant-btn--small {
+    border-radius: 16px;
+    height: 20px;
+    padding: 0px;
+    font-size: $font-size-sm;
+}
 </style>
