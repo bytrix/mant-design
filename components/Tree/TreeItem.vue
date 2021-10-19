@@ -13,7 +13,6 @@
         <template v-if="collapsed">
             <div v-for="subItem in item.children" :key="subItem._id">
                 <TreeItem :item="subItem" :indent="newIndent">
-                    <!-- <slot name="add"></slot> -->
                     <div @click.self="onItemAdd(subItem)">
                         <slot></slot>
                     </div>
@@ -26,12 +25,10 @@
 <script>
 import Icon from '../Icon'
 import { eventBus } from '../../src/index'
-// import Button from '../Button/Button.vue'
 export default {
     name: "TreeItem",
     components: {
         Icon,
-        // Button
     },
     data() {
         return {
@@ -47,7 +44,9 @@ export default {
             eventBus.$emit("expand", item)
         },
         onItemAdd(item) {
-            // console.log("onItemAdd", item)
+            if(item.children && !this.collapsed) {
+                this.collapsed = true
+            }
             eventBus.$emit("add", item)
         }
     },
@@ -78,7 +77,6 @@ export default {
         display: flex;
         .add-alt {
             opacity: 0;
-            // transition: $duration;
         }
         .indent {
             width: 16px;

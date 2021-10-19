@@ -1,7 +1,7 @@
 <template>
   <div class="mant-card" :style="{width}">
       <div class="non-footer">
-        <div class="title">{{title}}</div>
+        <div v-if="title" class="title">{{title}}</div>
         <div class="header-wrapper">
             <slot name="header"></slot>
             <slot name="header:right"></slot>
@@ -20,7 +20,7 @@ export default {
     props: {
         title: {
             type: String,
-            default: ""
+            default: undefined
         },
         width: {
             type: String,

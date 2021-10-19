@@ -43,7 +43,7 @@ export default {
 .mask::after {
     content: "";
     background-color: rgba(0,0,0,0.75);
-    // background-color: red;
+    transition: $duration;
     width: 100%;
     height: 100%;
     display: inline-block;

@@ -12,12 +12,12 @@
         },
     ]">
       <Icon
-        v-if="icon && iconPosition=='left'"
+        v-if="icon.length !== 0 && iconPosition=='left'"
         :class="{icon: $slots.default !== undefined}"
         :icon="icon" />
       <slot></slot>
       <Icon
-        v-if="icon && iconPosition=='right'"
+        v-if="icon.length !== 0 && iconPosition=='right'"
         :class="{
             mgl8: true,
             icon: $slots.default !== undefined

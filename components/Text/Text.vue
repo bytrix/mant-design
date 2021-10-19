@@ -1,8 +1,8 @@
 <template>
   <span class="mant-text" :class="[`mant-text--${type}`]">
-      <Icon v-if="icon && iconPosition==='left'" class="icon mgl8" :icon="icon" />
+      <Icon v-if="icon.length !== 0 && iconPosition==='left'" class="icon mgl8" :icon="icon" />
       <slot></slot>
-      <Icon v-if="icon && iconPosition==='right'" class="icon mgl8" :icon="icon" />
+      <Icon v-if="icon.length !== 0 && iconPosition==='right'" class="icon mgl8" :icon="icon" />
   </span>
 </template>
 

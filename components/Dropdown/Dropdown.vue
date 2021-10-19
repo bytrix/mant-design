@@ -2,7 +2,7 @@
   <div class="mant-dropdown"
     @mouseenter="showMenu = true"
     @mouseleave="showMenu = false">
-    <Icon v-if="icon" :icon="icon" />
+    <Icon v-if="icon.length !== 0" :icon="icon" />
     <span class="text">{{text}}</span>
     <Icon v-if="$slots.default" class="chevron" size="xs" :icon="['fal', 'chevron-down']" />
     <transition name="slide-fade">
@@ -38,7 +38,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .mant-dropdown {
     padding: 8px 18px;
     color: $text-color;

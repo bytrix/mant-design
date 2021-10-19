@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <EditableModal :visible.sync="showModal" @close="showModal = false"/>
     <Row>
       <Col :flex="2">
         <Tree
@@ -9,12 +10,9 @@
             add: onItemAdd
           }"
         >
-          <!-- <div style="background-color: red"> -->
-            <template slot="add">
-              <Button size="small" :icon="['fal', 'plus']" circle></Button>
-              <!-- <button>add</button> -->
-            </template>
-          <!-- </div> -->
+          <template slot="add">
+            <Button size="small" :icon="['fal', 'plus']" circle></Button>
+          </template>
         </Tree>
       </Col>
       <Col :flex="4">
@@ -22,7 +20,6 @@
       </Col>
       <Col :flex="4">
         <div class="preview" v-html="marked(content)"></div>
-        <!-- {{marked(content)}} -->
       </Col>
     </Row>
 
@@ -102,6 +99,7 @@ import Spin from '../components/Spin'
 import Tree from '../components/Tree'
 import Row from '../components/Row'
 import Col from '../components/Col'
+import EditableModal from '../components/EditableModal'
 import marked from 'marked'
 
 export default {
@@ -109,26 +107,7 @@ export default {
   data() {
     return {
       content: "# Hello, world!",
-      // treeData: [
-      //   {
-      //     id: "1",
-      //     title: "A",
-      //     children: [
-      //       {
-      //         id: "2",
-      //         title: "B"
-      //       },
-      //       {
-      //         id: "3",
-      //         title: "C"
-      //       }
-      //     ]
-      //   },
-      //   {
-      //     id: "4",
-      //     title: "D"
-      //   }
-      // ]
+      showModal: false,
       treeData: [{
         "_id": "859059a5616e09b400ae84dd1f3a4cd3",
         "title": "前端笔记",
@@ -172,14 +151,17 @@ export default {
   },
   methods: {
     marked,
+    openModal() {
+      this.showModal = true
+    },
     onItemAdd(item) {
       console.log("onAdd", item.title)
+      this.showModal = true
     },
     makeTree(data) {
       return data
     },
     onItemClick(item) {
-      // console.log("App onItemClick", item.title)
       if(item.children) {
         console.log("展开目录", item.title)
       } else {
@@ -187,7 +169,6 @@ export default {
       }
     },
     onContentChange(e) {
-      console.log("onContentChange", e.target.innerText)
       this.content = e.target.innerText
     }
   },
@@ -202,7 +183,8 @@ export default {
     Spin,
     Tree,
     Row,
-    Col
+    Col,
+    EditableModal
   }
 }
 </script>
