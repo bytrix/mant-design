@@ -7,7 +7,7 @@
         class="mant-dropdown-item">
         <div style="display: flex; flex: 1">
             <div class="text">{{text}}</div>
-            <Icon v-if="$slots.default" icon="chevron-right" class="chevron-right" size="xs" />
+            <Icon v-if="$slots.default" :icon="['fal', 'chevron-right']" class="chevron-right" size="xs" />
         </div>
         <div v-show="showMenu" class="mant-dropdown-item-menu" :style="{
             transform: `translateY(${menuTop}px) translateX(${menuLeft}px)`
@@ -61,7 +61,6 @@ export default {
     transition: 0.2s;
     .text {
         margin: 0px 12px;
-        // background-color: red;
         display: inline-block;
         flex: 1;
     }
@@ -70,20 +69,14 @@ export default {
     }
 }
 .mant-dropdown-item-menu {
-    // background-color: red;
     background-color: #1a1f28;
     box-shadow: 0 1px 16px 1px rgba(0,0,0,0.4);
-    // float: right;
     position: absolute;
-    // transform: translateX(300px);
-    // transform: translateY(-100px);
     left: 0px;
     top: 0px;
 }
 .mant-dropdown-item:hover {
-    // background-color: darken($color: #1a1f28, $amount: 3);
     color:lighten($color: $text-color, $amount: 20);
 }
-
 
 </style>

@@ -1,6 +1,11 @@
 <template>
   <div id="app">
 
+    <Tree
+      :data="treeData"
+      @itemClick="onItemClick"
+    />
+
     <Spin :loading="true">
       <Card title="hi">
         测试
@@ -16,7 +21,7 @@
 
     <Card title="下拉菜单">
       <div style="display: flex; flex-direction: row">
-        <Dropdown icon="map-marker-alt" text="Unites State, NY">
+        <Dropdown :icon="['fal', 'map-marker-alt']" text="Unites State, NY">
           <DropdownItem text="Shanghai, CN"></DropdownItem>
           <DropdownItem text="Tokyo, JP"></DropdownItem>
         </Dropdown>
@@ -40,8 +45,8 @@
       <Input size="large" />
       <Button>按钮</Button>
       <Button type="primary">按钮</Button>
-      <Button type="primary" icon="plus">新建</Button>
-      <Button type="primary" icon="plus" size="large">大号</Button>
+      <Button type="primary" :icon="['fal', 'plus']">新建</Button>
+      <Button type="primary" :icon="['fal', 'plus']" size="large">大号</Button>
       <MantText type="primary">文本</MantText>
     </Spin>
     <Card>
@@ -49,11 +54,11 @@
         <div class="title">aa</div>
       </template>
       <template slot="header:right">
-        <Button icon="bookmark" circle></Button>
+        <Button :icon="['fal', 'bookmark']" circle></Button>
       </template>
       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum molestias enim consequuntur, a eveniet totam repellendus dolorum eum repudiandae velit minus quidem fugiat corrupti tenetur praesentium facilis laudantium, ut laboriosam!
       <div slot="footer">
-        <Button type="link" active icon="arrow-right" icon-position="right">
+        <Button type="link" active :icon="['fal', 'arrow-right']" icon-position="right">
           查看
         </Button>
       </div>
@@ -74,9 +79,86 @@ import Input from '../components/Input'
 import Dropdown from '../components/Dropdown'
 import DropdownItem from '../components/Dropdown/Item'
 import Spin from '../components/Spin'
+import Tree from '../components/Tree'
 
 export default {
   name: 'App',
+  data() {
+    return {
+      // treeData: [
+      //   {
+      //     id: "1",
+      //     title: "A",
+      //     children: [
+      //       {
+      //         id: "2",
+      //         title: "B"
+      //       },
+      //       {
+      //         id: "3",
+      //         title: "C"
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     id: "4",
+      //     title: "D"
+      //   }
+      // ]
+      treeData: [{
+        "_id": "859059a5616e09b400ae84dd1f3a4cd3",
+        "title": "前端笔记",
+        "parent_id": null,
+        "children": [
+          {
+            "_id": "fa24ce1a616e0a4700c3c1783bec9413",
+            "parent_id": "859059a5616e09b400ae84dd1f3a4cd3",
+            "title": "JS原型链基础",
+            "children": [
+              {
+                "_id": "1",
+                "title": "测试",
+                "children": [
+                  {
+                    "_id": "2",
+                    "title": "再测试"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }, {
+        "_id": "9e7190f1616e09d600ad803a3ee5b634",
+        "title": "人工智能",
+        "parent_id": null,
+        "children": [
+          {
+            "_id": "859059a5616e0a7a00ae9f907d004593",
+            "parent_id": "9e7190f1616e09d600ad803a3ee5b634",
+            "title": "傅立叶学习"
+          }
+        ]
+      }, {
+        "_id": "fa24ce1a616e09e600c3b38d4ad835d7",
+        "title": "个人项目",
+        "parent_id": null
+      }]
+    }
+  },
+  methods: {
+    makeTree(data) {
+      return data
+    },
+    onItemClick(item) {
+      // console.log("App onItemClick", item.title)
+      if(item.children) {
+        console.log("展开目录", item.title)
+      } else {
+        console.log("打开文档", item.title)
+      }
+    }
+  },
   components: {
     Button,
     Card,
@@ -85,7 +167,8 @@ export default {
     Dropdown,
     DropdownItem,
     Input,
-    Spin
+    Spin,
+    Tree
   }
 }
 </script>

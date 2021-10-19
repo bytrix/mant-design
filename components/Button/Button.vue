@@ -49,8 +49,8 @@ export default {
             default: ""
         },
         icon: {
-            type: String,
-            default: ""
+            type: Array,
+            default: () => []
         },
         circle: {
             type: Boolean,

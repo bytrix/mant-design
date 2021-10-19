@@ -4,7 +4,7 @@
     @mouseleave="showMenu = false">
     <Icon v-if="icon" :icon="icon" />
     <span class="text">{{text}}</span>
-    <Icon v-if="$slots.default" class="chevron" size="xs" icon="chevron-down" />
+    <Icon v-if="$slots.default" class="chevron" size="xs" :icon="['fal', 'chevron-down']" />
     <transition name="slide-fade">
       <div v-show="showMenu" class="mant-dropdown-menu">
         <slot></slot>
@@ -27,8 +27,8 @@ export default {
   },
   props: {
     icon: {
-        type: String,
-        default: ""
+        type: Array,
+        default: () => []
     },
     text: {
         type: String,

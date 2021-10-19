@@ -1,4 +1,5 @@
 /* eslint-disable */
+import Vue from 'vue'
 import MantButton from '../components/Button'
 import MantText from '../components/Text'
 import MantCard from '../components/Card'
@@ -30,6 +31,8 @@ const install = (app) => {
     // app.component("Icon", FontAwesomeIcon)
     // app.component("Button", MantButton)
 }
+
+export const eventBus = new Vue()
 
 export default {
     install
