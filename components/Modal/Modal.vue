@@ -13,7 +13,7 @@
             </Card>
         </transition>
         <transition name="fade">
-            <div class="mask" v-show="sVisible"></div>
+            <div class="mask" v-show="sVisible" @click="() => maskClosable && onClose()"></div>
         </transition>
     </div>
 </template>
@@ -36,6 +36,10 @@ export default {
         visible: {
             type: Boolean,
             default: false
+        },
+        maskClosable: {
+            type: Boolean,
+            default: true
         }
     },
     watch: {

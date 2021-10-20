@@ -5,6 +5,8 @@
       <Col :flex="2">
         <Tree
           :data="treeData"
+          :draggable="true"
+          @drop="onDrop"
           v-on="{
             expand: onItemClick,
             add: onItemAdd
@@ -101,6 +103,7 @@ import Row from '../components/Row'
 import Col from '../components/Col'
 import EditableModal from '../components/EditableModal'
 import marked from 'marked'
+import { deepFind, deepSplice } from './utils'
 
 export default {
   name: 'App',
@@ -129,6 +132,10 @@ export default {
                 ]
               }
             ]
+          },
+          {
+            "id": "a",
+            "title": "腾讯云Serverless云数据库的使用"
           }
         ]
       }, {
@@ -151,6 +158,15 @@ export default {
   },
   methods: {
     marked,
+    onDrop(oldId, newId) {
+      const oldIndexList = oldId.split('-')
+      const newIndexList = newId.split('-')
+      const oldObj = deepFind(this.treeData, oldIndexList)
+      // 删除旧项
+      deepSplice(this.treeData, oldIndexList, 1)
+      // 添加新项
+      deepSplice(this.treeData, newIndexList, 0, oldObj)
+    },
     openModal() {
       this.showModal = true
     },
@@ -208,6 +224,7 @@ html {
   text-align: left;
   padding: 12px;
   color: $text-color;
+  height: 100%;
 }
 .editor {
   resize: none;
@@ -219,7 +236,6 @@ html {
   font-family: 'Yahei';
   border: none;
   width: 100%;
-  height: 100%;
 }
 .preview {
   background-color: $block-bg-color;
