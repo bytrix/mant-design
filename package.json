@@ -1,11 +1,12 @@
 {
   "name": "mant-design",
-  "version": "0.1.0",
+  "version": "0.1.7",
   "private": false,
+  "main": "lib/mant.umd.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lib": "vue-cli-service build --target lib --dest lib src/index.js",
+    "lib": "vue-cli-service build --target lib --dest lib --name mant src/index.js",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint"

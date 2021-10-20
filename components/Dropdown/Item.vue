@@ -20,7 +20,7 @@
 <script>
 import Icon from '../Icon'
 export default {
-    name: "DropdownItem",
+    name: "MantDropdownItem",
     components: {
         Icon
     },

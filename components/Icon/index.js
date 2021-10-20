@@ -9,7 +9,7 @@ import { fal } from '@fortawesome/pro-light-svg-icons'
 library.add(fal)
 
 // const Icon = {}
-// FontAwesomeIcon.name = 'Icon'
+FontAwesomeIcon.name = 'MantIcon'
 // FontAwesomeIcon.install = (app: any) => {
 //     app.component("fa-icon", FontAwesomeIcon)
 // }

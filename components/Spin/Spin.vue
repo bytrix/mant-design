@@ -13,7 +13,7 @@
 
 <script>
 export default {
-    name: "MantLoading",
+    name: "MantSpin",
     data() {
         return {
             loadingTop: 0,

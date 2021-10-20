@@ -10,9 +10,10 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .mant-tag {
     background-color: #272f39;
+    color: $text-color;
     height: 32px;
     display: inline-block;
     border-radius: 16px;

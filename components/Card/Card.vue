@@ -3,8 +3,12 @@
       <div class="non-footer">
         <div v-if="title" class="title">{{title}}</div>
         <div class="header-wrapper">
-            <slot name="header"></slot>
-            <slot name="header:right"></slot>
+            <div>
+                <slot name="header"></slot>
+            </div>
+            <div>
+                <slot name="header:right"></slot>
+            </div>
         </div>
         <slot></slot>
       </div>

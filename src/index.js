@@ -1,35 +1,49 @@
 /* eslint-disable */
 import Vue from 'vue'
 import MantButton from '../components/Button'
-import MantText from '../components/Text'
 import MantCard from '../components/Card'
-import MantTag from '../components/Tag'
 import MantCheckbox from '../components/Checkbox'
-import MantTabs from '../components/Tabs'
+import MantCol from '../components/Col'
 import MantDropdown from '../components/Dropdown'
-// import MantDropdownItem from '../components/Dropdown/Item'
-
-// import { library } from '@fortawesome/fontawesome-svg-core'
-// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-// import { faUser, faClock, faCoins, faArrowRight, faBookmark, faPlus, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
-
-// library.add(faUser, faClock, faCoins, faArrowRight, faBookmark, faPlus, faMapMarkerAlt)
+import MantDropdownItem from '../components/Dropdown/Item'
+import MantEditableModal from '../components/EditableModal'
+import MantIcon from '../components/Icon'
+import MantInput from '../components/Input'
+import MantModal from '../components/Modal'
+import MantRow from '../components/Row'
+import MantSpin from '../components/Spin'
+import MantTabs from '../components/Tabs'
+import MantTag from '../components/Tag'
+import MantText from '../components/Text'
+import MantTree from '../components/Tree'
 
 const components = [
     MantButton,
-    MantText,
     MantCard,
-    MantTag,
     MantCheckbox,
-    MantTabs,
+    MantCol,
     MantDropdown,
-    // MantDropdownItem
+    MantDropdownItem,
+    MantEditableModal,
+    MantIcon,
+    MantInput,
+    MantModal,
+    MantRow,
+    MantSpin,
+    MantTabs,
+    MantTag,
+    MantText,
+    MantTree
 ]
 
 const install = (app) => {
     components.forEach((item) => app.component(item.name, item))
     // app.component("Icon", FontAwesomeIcon)
     // app.component("Button", MantButton)
+}
+
+if(typeof window !== 'undefined' && window.Vue) {
+    install(window.Vue)
 }
 
 export const eventBus = new Vue()

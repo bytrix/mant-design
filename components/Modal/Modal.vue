@@ -28,6 +28,10 @@ export default {
             sVisible: false
         }
     },
+    mounted() {
+        console.log('this.visible', this.visible)
+        this.sVisible = this.visible
+    },
     props: {
         title: {
             type: String,

@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <EditableModal :visible.sync="showModal" @close="showModal = false"/>
+    <Modal :visible="true">aa</Modal>
+    <!-- <EditableModal :visible.sync="showModal" @close="showModal = false"/> -->
     <Row>
       <Col :flex="2">
         <Tree
@@ -101,7 +102,8 @@ import Spin from '../components/Spin'
 import Tree from '../components/Tree'
 import Row from '../components/Row'
 import Col from '../components/Col'
-import EditableModal from '../components/EditableModal'
+import Modal from '../components/Modal'
+// import EditableModal from '../components/EditableModal'
 import marked from 'marked'
 import { deepFind, deepSplice } from './utils'
 
@@ -200,7 +202,8 @@ export default {
     Tree,
     Row,
     Col,
-    EditableModal
+    Modal
+    // EditableModal
   }
 }
 </script>
