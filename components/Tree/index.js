@@ -1,6 +1,6 @@
 import Tree from './Tree.vue'
 import Vue from 'vue'
 
-export const eventBus = new Vue()
+export const treeEventBus = new Vue()
 
 export default Tree

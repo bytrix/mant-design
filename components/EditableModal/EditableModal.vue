@@ -1,9 +1,9 @@
 <template>
     <Modal :visible.sync="showModal" @close="onClose">
         <template slot="header">
-            <input type="text" ref="titleInputRef" class="title" placeholder="Untitled" />
+            <input type="text" ref="titleInputRef" class="title" placeholder="Untitled" :value="title" />
         </template>
-        <textarea class="content-input" placeholder="Write something here..." />
+        <textarea class="content-input" placeholder="Write something here..." v-model="content"/>
     </Modal>
 </template>
 
@@ -36,6 +36,14 @@ export default {
         visible: {
             type: Boolean,
             default: true
+        },
+        title: {
+            type: String,
+            default: ""
+        },
+        content: {
+            type: String,
+            default: ""
         }
     },
     components: {

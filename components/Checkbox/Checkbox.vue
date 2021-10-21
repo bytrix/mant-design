@@ -62,6 +62,6 @@ export default {
     border-top: none;
     border-right: none;
     display: inline-block;
-    transform: rotate(-45deg) translate(4px, -4px);
+    transform: rotate(-45deg) translate(7px, -2px);
 }
 </style>

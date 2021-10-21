@@ -1,6 +1,6 @@
 {
   "name": "mant-design",
-  "version": "0.1.7",
+  "version": "0.1.9",
   "private": false,
   "main": "lib/mant.umd.js",
   "scripts": {

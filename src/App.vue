@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <Modal :visible="true">aa</Modal>
-    <!-- <EditableModal :visible.sync="showModal" @close="showModal = false"/> -->
+    <!-- <Modal :visible="showModal" @close="showModal = false">aa</Modal> -->
+    <EditableModal :title="note.title" :content="note.content" :visible.sync="showModal" @close="showModal = false"/>
+    
     <Row>
       <Col :flex="2">
         <Tree
@@ -9,12 +10,12 @@
           :draggable="true"
           @drop="onDrop"
           v-on="{
-            expand: onItemClick,
-            add: onItemAdd
+            expand: onItemClick
           }"
+          :right-events="['delete']"
         >
-          <template slot="add">
-            <Button size="small" :icon="['fal', 'plus']" circle></Button>
+          <template slot="right">
+            <Button @click="onItemAdd" size="small" :icon="['fal', 'plus']" circle></Button>
           </template>
         </Tree>
       </Col>
@@ -102,10 +103,11 @@ import Spin from '../components/Spin'
 import Tree from '../components/Tree'
 import Row from '../components/Row'
 import Col from '../components/Col'
-import Modal from '../components/Modal'
-// import EditableModal from '../components/EditableModal'
+// import Modal from '../components/Modal'
+import EditableModal from '../components/EditableModal'
 import marked from 'marked'
 import { deepFind, deepSplice } from './utils'
+import { treeEventBus } from '../components/Tree'
 
 export default {
   name: 'App',
@@ -113,6 +115,7 @@ export default {
     return {
       content: "# Hello, world!",
       showModal: false,
+      note: {},
       treeData: [{
         "_id": "859059a5616e09b400ae84dd1f3a4cd3",
         "title": "前端笔记",
@@ -158,8 +161,20 @@ export default {
       }]
     }
   },
+  mounted() {
+    treeEventBus.$on('treeItemClick', item => {
+        console.log('菜单操作', item)
+        if(item) {
+          this.note = item
+        }
+        this.showModal = true
+    })
+  },
   methods: {
     marked,
+    onItemAdd() {
+      treeEventBus.$emit('treeItemClick')
+    },
     onDrop(oldId, newId) {
       const oldIndexList = oldId.split('-')
       const newIndexList = newId.split('-')
@@ -172,10 +187,10 @@ export default {
     openModal() {
       this.showModal = true
     },
-    onItemAdd(item) {
-      console.log("onAdd", item.title)
-      this.showModal = true
-    },
+    // onItemAdd(item) {
+    //   console.log("onAdd", item.title)
+    //   this.showModal = true
+    // },
     makeTree(data) {
       return data
     },
@@ -202,8 +217,8 @@ export default {
     Tree,
     Row,
     Col,
-    Modal
-    // EditableModal
+    // Modal
+    EditableModal
   }
 }
 </script>
@@ -214,7 +229,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   margin-top: 60px;
 }
 html {

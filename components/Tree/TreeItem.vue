@@ -4,19 +4,17 @@
             class="item"
             :id="index"
             :draggable="draggable"
-            @click="onItemClick(item)"
+            @click="onItemClick(item, true)"
             @dragover="onDragOver"
             @dragstart="onDragStart"
             @dragleave="onDragLeave"
             @drop="onDrop"
         >
             <span v-for="i in indent" :key="i" class="indent"></span>
-            <!-- <div style="border-top: 2px solid red; display: block"> -->
-                <Icon v-if="item.children" :icon="['fal', 'chevron-right']" class="chevron-right" />
-                <Icon v-else :icon="['fal', 'file-alt']" class="chevron-right" />
-                <span class="text">{{item.title}}</span>
-            <!-- </div> -->
-            <div class="add-alt" @click="onItemAdd(item)">
+            <Icon v-if="item.children" :icon="['fal', 'chevron-right']" class="chevron-right" />
+            <Icon v-else :icon="['fal', 'file-alt']" class="chevron-right" />
+            <span class="text">{{item.title}}</span>
+            <div class="add-alt" @click.stop="onTreeItemClick(item)">
                 <slot></slot>
             </div>
         </div>
@@ -33,7 +31,7 @@
                     @dragleave="onDragLeave"
                     @drop="onDrop"
                 >
-                    <div @click.self="onItemAdd(subItem)">
+                    <div @click.stop="onTreeItemClick(subItem)">
                         <slot></slot>
                     </div>
                 </TreeItem>
@@ -44,9 +42,7 @@
 
 <script>
 import Icon from '../Icon'
-// import { eventBus } from '../../src/index'
-import { eventBus } from './index'
-// import { deepSplice } from '../../src/utils'
+import { treeEventBus } from './index'
 export default {
     name: "TreeItem",
     components: {
@@ -60,27 +56,26 @@ export default {
         }
     },
     methods: {
-        onItemClick(item) {
-            if(item.children) {
+        onTreeItemClick(item) {
+            treeEventBus.$emit('treeItemClick', item)
+        },
+        onItemClick(item, expand) {
+            if(item.children && expand) {
                 this.collapsed = !this.collapsed
             }
-            eventBus.$emit("expand", item)
+            treeEventBus.$emit("expand", item)
         },
         onItemAdd(item) {
             if(item.children && !this.collapsed) {
                 this.collapsed = true
             }
-            eventBus.$emit("add", item)
+            treeEventBus.$emit("add", item)
         },
         onDragStart(e) {
             console.log('onDragStart', e.target, e.target.id)
             e.dataTransfer.setData('id', e.target.id)
         },
         onDragOver(e) {
-            console.log("onDragOver11", e.target.className)
-            // this.overTargetId = e.target.id
-            // const siblingEl = e.target.previousElementSibling
-            // console.log('siblingEl', siblingEl)
             if(e.target.className.indexOf('item') !== -1) {
                 e.target.className = 'item item-drag--active'
             }
@@ -95,19 +90,11 @@ export default {
             console.log("onDrop", e)
             const oldId = e.dataTransfer.getData('id')
             const newId = e.target.id
-            eventBus.$emit("drop", oldId, newId)
-            // const indexList = id.split('-')
-            // console.log('indexList', indexList)
-            // deepSplice()
-            // console.log('onDrop id>>>', id)
+            treeEventBus.$emit("drop", oldId, newId)
             if(e.target.className.indexOf('item') !== -1) {
                 e.target.className = 'item'
             }
         },
-        // allowDropr(e) {
-        //     // e.target.className = 'item-drag--active'
-        //     e.preventDefault()
-        // },
     },
     props: {
         item: {
@@ -129,6 +116,10 @@ export default {
         deepIndex: {
             type: String,
             default: ""
+        },
+        listeners: {
+            type: Object,
+            default: () => {}
         }
     }
 }
@@ -143,7 +134,6 @@ export default {
     .item {
         background-color: $block-bg-color;
         padding: 6px;
-        // transition: $duration;
         border-top: 2px solid transparent;
         cursor: pointer;
         display: flex;
@@ -167,8 +157,6 @@ export default {
     }
     .item-drag--active {
         border-top-color: $primary-color;
-        // border-top-color: $block-bg-color-secondary;
-        // transition: 0.2s;
     }
     .item:hover {
         color: lighten($color: $text-color, $amount: 20);
