@@ -1,4 +1,5 @@
 <template>
+    <!-- TODO: 组件递归有问题，暂时先用二级菜单 -->
     <div>
         <div
             class="item"
@@ -15,9 +16,11 @@
             <Icon v-else :icon="['fal', 'file-alt']" class="chevron-right" />
             <span class="text">{{item.title}}</span>
             <div class="add-alt" @click.stop="onTreeItemClick(item)">
-                <slot></slot>
+                <!-- 根节点 -->
+                <slot :item="item"></slot>
             </div>
         </div>
+
         <template v-if="collapsed">
             <div v-for="(subItem, deepIndex) in item.children" :key="subItem._id">
                 <TreeItem
@@ -31,12 +34,12 @@
                     @dragleave="onDragLeave"
                     @drop="onDrop"
                 >
-                    <div @click.stop="onTreeItemClick(subItem)">
-                        <slot></slot>
-                    </div>
+                    <!-- 子节点 -->
+                    <slot :item="subItem"></slot>
                 </TreeItem>
             </div>
         </template>
+
     </div>
 </template>
 
@@ -55,9 +58,18 @@ export default {
             overTargetId: ""
         }
     },
+    created() {
+        treeEventBus.$on('treeItemClick', () => {
+            // console.log('TreeItem.vue  treeItemClick >>> 777', this.item)
+            treeEventBus.$emit('treeItemReceived', this.item)
+        })
+    },
+    updated() {
+
+    },
     methods: {
-        onTreeItemClick(item) {
-            treeEventBus.$emit('treeItemClick', item)
+        onTreeItemClick() {
+            // treeEventBus.$emit('treeItemClick', item)
         },
         onItemClick(item, expand) {
             if(item.children && expand) {

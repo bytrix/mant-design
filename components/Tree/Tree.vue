@@ -11,7 +11,9 @@
                 :draggable="draggable"
                 :index="`${index}`"
             >
-                <slot name="right"></slot>
+                <template slot-scope="{item}">
+                    <slot :item="item"></slot>
+                </template>
             </TreeItem>
       </div>
   </div>
@@ -47,12 +49,16 @@ export default {
         draggable: {
             type: Boolean,
             default: false
-        }
+        },
+        pSlots: {}
     },
     components: {
         TreeItem
     },
     methods: {
+        onClick(item) {
+            console.log('onClick', item)
+        },
         onItemClick(item) {
             this.$emit("expand", item)
         },

@@ -4,7 +4,7 @@
     <EditableModal :title="note.title" :content="note.content" :visible.sync="showModal" @close="showModal = false"/>
     
     <Row>
-      <Col :flex="2">
+      <Col :flex="6">
         <Tree
           :data="treeData"
           :draggable="true"
@@ -12,10 +12,14 @@
           v-on="{
             expand: onItemClick
           }"
-          :right-events="['delete']"
         >
-          <template slot="right">
-            <Button @click="onItemAdd" size="small" :icon="['fal', 'plus']" circle></Button>
+          <template slot-scope="{item}">
+            <!-- <button>{{item.title}}</button> -->
+            <Button
+              circle
+              size="small"
+              :icon="['fal', 'plus']"
+              @click="onItemOp(item)" />
           </template>
         </Tree>
       </Col>
@@ -101,6 +105,7 @@ import Dropdown from '../components/Dropdown'
 import DropdownItem from '../components/Dropdown/Item'
 import Spin from '../components/Spin'
 import Tree from '../components/Tree'
+// import TreeButton from '../components/Tree/TreeButton'
 import Row from '../components/Row'
 import Col from '../components/Col'
 // import Modal from '../components/Modal'
@@ -172,8 +177,10 @@ export default {
   },
   methods: {
     marked,
-    onItemAdd() {
-      treeEventBus.$emit('treeItemClick')
+    onItemOp(item) {
+      // console.log('onItemOp', e.title)
+      this.showModal = true
+      this.note = item
     },
     onDrop(oldId, newId) {
       const oldIndexList = oldId.split('-')
@@ -187,7 +194,7 @@ export default {
     openModal() {
       this.showModal = true
     },
-    // onItemAdd(item) {
+    // onItemOp(item) {
     //   console.log("onAdd", item.title)
     //   this.showModal = true
     // },
@@ -218,7 +225,8 @@ export default {
     Row,
     Col,
     // Modal
-    EditableModal
+    EditableModal,
+    // TreeButton
   }
 }
 </script>

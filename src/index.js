@@ -16,6 +16,7 @@ import MantTabs from '../components/Tabs'
 import MantTag from '../components/Tag'
 import MantText from '../components/Text'
 import MantTree from '../components/Tree'
+import MantTreeButton from '../components/TreeButton'
 
 const components = [
     MantButton,
@@ -33,13 +34,12 @@ const components = [
     MantTabs,
     MantTag,
     MantText,
-    MantTree
+    MantTree,
+    MantTreeButton
 ]
 
 const install = (app) => {
     components.forEach((item) => app.component(item.name, item))
-    // app.component("Icon", FontAwesomeIcon)
-    // app.component("Button", MantButton)
 }
 
 if(typeof window !== 'undefined' && window.Vue) {
