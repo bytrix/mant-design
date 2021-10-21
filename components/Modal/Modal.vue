@@ -1,13 +1,22 @@
 <template>
     <div class="mant-modal">
+            maskClosable: {{maskClosable}}
         <transition name="slide-fade">
-            <Card v-show="sVisible" width="950px" class="modal" ref="modalCardRef" @change:visible="visible = false">
+            <Card
+                v-show="sVisible"
+                :width="width"
+                class="modal"
+                ref="modalCardRef"
+                @change:visible="visible = false">
                 <template slot="header">
                     <div v-if="title" class="title">{{title}}</div>
                     <slot name="header"></slot>
                 </template>
                 <template slot="header:right">
                     <Button @click="onClose" :icon="['fal', 'times']" circle></Button>
+                </template>
+                <template slot="footer">
+                    <slot name="footer"></slot>
                 </template>
                 <slot></slot>
             </Card>
@@ -44,6 +53,10 @@ export default {
         maskClosable: {
             type: Boolean,
             default: true
+        },
+        width: {
+            type: String,
+            default: "950px"
         }
     },
     watch: {

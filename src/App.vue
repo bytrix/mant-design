@@ -1,8 +1,25 @@
 <template>
   <div id="app">
     <!-- <Modal :visible="showModal" @close="showModal = false">aa</Modal> -->
-    <EditableModal :title="note.title" :content="note.content" :visible.sync="showModal" @close="showModal = false"/>
-    
+    2<Icon style="color: blue" :icon="['fab', 'weixin']" />2
+    <Row hello="world">
+      <Col>
+        <Card />
+      </Col>
+      <!-- <Col>
+        <Card />
+      </Col> -->
+    </Row>
+    <EditableModal
+      :title="note.title"
+      :content="note.content"
+      :visible.sync="showModal"
+      @change="onNoteChange"
+      @close="showModal = false">
+      <div slot="footer">
+        <Button type="primary">Save</Button>
+      </div>
+    </EditableModal>
     <Row>
       <Col :flex="6">
         <Tree
@@ -101,6 +118,7 @@ import Card from '../components/Card'
 import Checkbox from '../components/Checkbox'
 import MantText from '../components/Text'
 import Input from '../components/Input'
+import Icon from '../components/Icon'
 import Dropdown from '../components/Dropdown'
 import DropdownItem from '../components/Dropdown/Item'
 import Spin from '../components/Spin'
@@ -177,6 +195,10 @@ export default {
   },
   methods: {
     marked,
+    onNoteChange(note) {
+      this.note = note
+      console.log('this.note', note)
+    },
     onItemOp(item) {
       // console.log('onItemOp', e.title)
       this.showModal = true
@@ -227,6 +249,7 @@ export default {
     // Modal
     EditableModal,
     // TreeButton
+    Icon
   }
 }
 </script>

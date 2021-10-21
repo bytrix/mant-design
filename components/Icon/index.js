@@ -6,7 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 // library.add(faUser, faClock, faCoins, faArrowRight, faBookmark, faPlus, faArrowDown, faChevronDown, faChevronRight, faMapMarkerAlt, faMinus, faFileAlt)
 
 import { fal } from '@fortawesome/pro-light-svg-icons'
-library.add(fal)
+import { fab } from '@fortawesome/free-brands-svg-icons'
+library.add(fal, fab)
 
 // const Icon = {}
 FontAwesomeIcon.name = 'MantIcon'

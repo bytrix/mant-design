@@ -16,7 +16,7 @@ import MantTabs from '../components/Tabs'
 import MantTag from '../components/Tag'
 import MantText from '../components/Text'
 import MantTree from '../components/Tree'
-import MantTreeButton from '../components/TreeButton'
+// import MantTreeButton from '../components/TreeButton'
 
 const components = [
     MantButton,

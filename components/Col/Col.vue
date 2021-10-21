@@ -1,6 +1,9 @@
 <template>
   <div class="mant-col" :style="{flex}">
-    <slot></slot>
+    <slot name='h' slot-scope="p">
+      <!-- <slot name="h"></slot> -->
+      {{p}}kk
+    </slot>
   </div>
 </template>
 
@@ -11,7 +14,8 @@ export default {
         flex: {
             type: Number,
             default: 1
-        }
+        },
+        gutter: {},
     }
 }
 </script>
