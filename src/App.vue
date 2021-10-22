@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- <Modal :visible="showModal" @close="showModal = false">aa</Modal> -->
-    <Button @click="showModal = true">show</Button>
+    <Button type="primary" @click="showModal = true">show</Button>
     <Row :gutter="[8, 12]">
       <Col :flex="1">
         <Card />
@@ -17,7 +17,7 @@
       @change="onNoteChange"
       @close="showModal = false">
       <div slot="footer">
-        <Button type="primary">Save</Button>
+        <Button type="primary" :disabled="!note.title || note.title == ''">Save</Button>
       </div>
     </EditableModal>
 
@@ -151,49 +151,58 @@ export default {
       content: "# Hello, world!",
       showModal: false,
       note: {},
-      treeData: [{
-        "_id": "859059a5616e09b400ae84dd1f3a4cd3",
-        "title": "前端笔记",
-        "parent_id": null,
-        "children": [
-          {
-            "_id": "fa24ce1a616e0a4700c3c1783bec9413",
-            "parent_id": "859059a5616e09b400ae84dd1f3a4cd3",
-            "title": "JS原型链基础",
-            "children": [
-              {
-                "_id": "1",
-                "title": "测试",
-                "children": [
-                  {
-                    "_id": "2",
-                    "title": "再测试"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "_id": "a",
-            "title": "腾讯云Serverless云数据库的使用"
-          }
-        ]
-      }, {
-        "_id": "9e7190f1616e09d600ad803a3ee5b634",
-        "title": "人工智能",
-        "parent_id": null,
-        "children": [
-          {
-            "_id": "859059a5616e0a7a00ae9f907d004593",
-            "parent_id": "9e7190f1616e09d600ad803a3ee5b634",
-            "title": "傅立叶学习"
-          }
-        ]
-      }, {
-        "_id": "fa24ce1a616e09e600c3b38d4ad835d7",
-        "title": "个人项目",
-        "parent_id": null
-      }]
+      treeData: [
+        {
+          "_id": "18ed09686172e8d00159b4404d5a0833",
+          "title": "第一条笔记",
+          "content": "你好，世界",
+          "create_time": "2021-10-22 16:37:36",
+          "update_time": "2021-10-22 16:37:36"
+        }
+      ]
+      // treeData: [{
+      //   "_id": "859059a5616e09b400ae84dd1f3a4cd3",
+      //   "title": "前端笔记",
+      //   "parent_id": null,
+      //   "children": [
+      //     {
+      //       "_id": "fa24ce1a616e0a4700c3c1783bec9413",
+      //       "parent_id": "859059a5616e09b400ae84dd1f3a4cd3",
+      //       "title": "JS原型链基础",
+      //       "children": [
+      //         {
+      //           "_id": "1",
+      //           "title": "测试",
+      //           "children": [
+      //             {
+      //               "_id": "2",
+      //               "title": "再测试"
+      //             }
+      //           ]
+      //         }
+      //       ]
+      //     },
+      //     {
+      //       "_id": "a",
+      //       "title": "腾讯云Serverless云数据库的使用"
+      //     }
+      //   ]
+      // }, {
+      //   "_id": "9e7190f1616e09d600ad803a3ee5b634",
+      //   "title": "人工智能",
+      //   "parent_id": null,
+      //   "children": [
+      //     {
+      //       "_id": "859059a5616e0a7a00ae9f907d004593",
+      //       "parent_id": "9e7190f1616e09d600ad803a3ee5b634",
+      //       "title": "傅立叶学习"
+      //     }
+      //   ]
+      // }, {
+      //   "_id": "fa24ce1a616e09e600c3b38d4ad835d7",
+      //   "title": "个人项目",
+      //   "parent_id": null
+      // }]
     }
   },
   mounted() {

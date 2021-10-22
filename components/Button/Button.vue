@@ -95,6 +95,10 @@ export default {
         margin-right: 8px;
     }
 }
+.mant-btn[disabled] {
+    opacity: 0.5;
+    cursor: default;
+}
 .mant-btn--circle {
     width: 32px;
     padding: 0px;

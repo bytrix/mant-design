@@ -4,9 +4,9 @@
         @close="onClose"
         :maskClosable="maskClosable">
         <template slot="header">
-            <input type="text" ref="titleInputRef" class="title" placeholder="Untitled" :value="value.title" @change="onTitleChange" />
+            <input type="text" ref="titleInputRef" class="title" placeholder="Untitled" v-model="value.title" @change="onTitleChange" />
         </template>
-        <textarea class="content-input" placeholder="Write something here..." :value="value.content" @change="onContentChange"/>
+        <textarea class="content-input" placeholder="Write something here..." v-model="value.content" @change="onContentChange"/>
         <template slot="footer">
             <slot name="footer"></slot>
         </template>
