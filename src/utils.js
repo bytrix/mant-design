@@ -15,6 +15,7 @@ export function deepFind(arr, indexList) {
     })
     return obj
 }
+
 export function deepSplice(arr, indexList, howmany, item) {
     const i = parseInt(indexList.pop())
     const obj = deepFind(arr, indexList)
@@ -26,4 +27,12 @@ export function deepSplice(arr, indexList, howmany, item) {
         }
     }
     return arr
+}
+
+export function wrapHref(href) {
+    if(href.startsWith('http://') || href.startsWith('https://')) {
+        return href
+    } else {
+        return `http://${href}`
+    }
 }

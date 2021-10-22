@@ -40,7 +40,7 @@ export default {
     border: 1px solid $border-color;
     border-radius: $border-radius;
     text-align: left;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
     color: $text-color;
     .non-footer {
         padding: 24px;

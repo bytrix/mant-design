@@ -10,6 +10,9 @@
             @dragstart="onDragStart"
             @dragleave="onDragLeave"
             @drop="onDrop"
+            :class="{
+                selected: item[properties.id] === currentItem[properties.id]
+            }"
         >
             <span v-for="i in indent" :key="i" class="indent"></span>
             <Icon v-if="item.children" :icon="['fal', 'chevron-right']" class="chevron-right" />
@@ -22,7 +25,7 @@
         </div>
 
         <template v-if="collapsed">
-            <div v-for="(subItem, deepIndex) in item.children" :key="subItem._id">
+            <div v-for="(subItem, deepIndex) in item.children" :key="subItem[properties.id]">
                 <TreeItem
                     :item="subItem"
                     :indent="newIndent"
@@ -33,6 +36,7 @@
                     @dragstart="onDragStart"
                     @dragleave="onDragLeave"
                     @drop="onDrop"
+                    :properties="properties"
                 >
                     <!-- 子节点 -->
                     <slot :item="subItem"></slot>
@@ -55,13 +59,16 @@ export default {
         return {
             newIndent: this.indent + 1,
             collapsed: false,
-            overTargetId: ""
+            overTargetId: "",
+            currentItem: {}
         }
     },
     created() {
         treeEventBus.$on('treeItemClick', () => {
-            // console.log('TreeItem.vue  treeItemClick >>> 777', this.item)
             treeEventBus.$emit('treeItemReceived', this.item)
+        })
+        treeEventBus.$on('expand', item => {
+            this.currentItem = item
         })
     },
     updated() {
@@ -132,7 +139,15 @@ export default {
         listeners: {
             type: Object,
             default: () => {}
-        }
+        },
+        properties: {
+            type: Object,
+            default: () => ({
+                id: 'id',
+                title: 'title',
+                parent_id: 'parent_id'
+            })
+        },
     }
 }
 </script>
@@ -171,6 +186,9 @@ export default {
         border-top-color: $primary-color;
     }
     .item:hover {
-        color: lighten($color: $text-color, $amount: 20);
+        color: $text-color-active;
+    }
+    .selected {
+        color: $text-color-active;
     }
 </style>

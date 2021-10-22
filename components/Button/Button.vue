@@ -27,8 +27,8 @@
 </template>
 
 <script>
+import { wrapHref } from '../../src/utils'
 import Icon from '../Icon'
-// import { defineComponent } from 'vue'
 export default {
     name: "MantButton",
     components: {
@@ -36,7 +36,11 @@ export default {
     },
     methods: {
         onClick(e) {
-            this.$emit("click", e)
+            if(this.type === 'link' && this.href) {
+                window.location.href = wrapHref(this.href)
+            } else {
+                this.$emit("click", e)
+            }
         }
     },
     props: {
@@ -67,6 +71,10 @@ export default {
         'icon-position': {
             type: String,
             default: "left"
+        },
+        href: {
+            type: String,
+            default: ""
         }
     }
 }

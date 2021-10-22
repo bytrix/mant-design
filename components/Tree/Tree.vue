@@ -2,7 +2,7 @@
   <div class="mant-tree">
         <div
             v-for="(item, index) in data"
-            :key="item._id"
+            :key="item[properties.id]"
         >
             <TreeItem
                 :item="item"
@@ -10,6 +10,7 @@
                 @itemClick="onItemClick"
                 :draggable="draggable"
                 :index="`${index}`"
+                :properties="properties"
             >
                 <template slot-scope="{item}">
                     <slot :item="item"></slot>
@@ -27,7 +28,7 @@ export default {
     data() {
         return {
             dragLineActive: false,
-            itemListeners: {}
+            itemListeners: {},
         }
     },
     created() {
@@ -50,15 +51,19 @@ export default {
             type: Boolean,
             default: false
         },
-        pSlots: {}
+        properties: {
+            type: Object,
+            default: () => ({
+                id: 'id',
+                title: 'title',
+                parent_id: 'parent_id'
+            })
+        },
     },
     components: {
         TreeItem
     },
     methods: {
-        onClick(item) {
-            console.log('onClick', item)
-        },
         onItemClick(item) {
             this.$emit("expand", item)
         },
@@ -72,14 +77,14 @@ export default {
     text-align: left;
     padding: 12px;
     background-color: $block-bg-color;
-    .drag-line {
-        height: 22px;
-        display: block;
-        background-color: red;
-        z-index: -10;
-        opacity: 0.4;
-        width: 100%;
-    }
+    // .drag-line {
+    //     height: 22px;
+    //     display: block;
+    //     background-color: red;
+    //     z-index: -10;
+    //     opacity: 0.4;
+    //     width: 100%;
+    // }
     .active {
         background-color: $primary-color;
     }

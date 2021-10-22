@@ -1,10 +1,10 @@
 <template>
   <div class="mant-dropdown"
-    @mouseenter="showMenu = true"
-    @mouseleave="showMenu = false">
-    <Icon v-if="icon.length !== 0" :icon="icon" />
-    <span class="text">{{text}}</span>
-    <Icon v-if="$slots.default" class="chevron" size="xs" :icon="['fal', 'chevron-down']" />
+    v-on="triggerEvents()"
+  >
+    <Icon v-if="icon.length !== 0" :icon="icon" :class="{active: showMenu}" />
+    <span :class="{text, active: showMenu}">{{text}}</span>
+    <!-- <Icon v-if="$slots.default" class="chevron" size="xs" :icon="['fal', 'chevron-down']" /> -->
     <transition name="slide-fade">
       <div v-show="showMenu" class="mant-dropdown-menu">
         <slot></slot>
@@ -15,6 +15,7 @@
 
 <script>
 import Icon from '../Icon'
+import { triggerEventTuple, dropdownEventBus } from './index'
 export default {
   name: "MantDropdown",
   components: {
@@ -22,8 +23,42 @@ export default {
   },
   data() {
       return {
-          showMenu: false
+          showMenu: false,
+          id: null
       }
+  },
+  methods: {
+    triggerEvents() {
+      const _this = this
+      const _triggerEvents = {}
+      this.trigger.forEach(triggerName => {
+        _triggerEvents[triggerName] = _this.onDropdownTrigger
+        const untriggerName = triggerEventTuple[triggerName]
+        if(untriggerName) {
+          _triggerEvents[untriggerName] = () => {
+            _this.showMenu = false
+          }
+        }
+      })
+      return _triggerEvents
+    },
+    onDropdownTrigger(e) {
+      if(this.showMenu === false) {
+        this.showMenu = true
+        dropdownEventBus.$emit('open-id', this.id)
+        e.stopPropagation()
+      }
+    }
+  },
+  created() {
+    const _this = this
+    this.id = Math.random()
+    document.addEventListener('click', () => {
+      this.showMenu = false
+    })
+    dropdownEventBus.$on('open-id', id => {
+      _this.showMenu = _this.id === id
+    })
   },
   props: {
     icon: {
@@ -33,6 +68,10 @@ export default {
     text: {
         type: String,
         default: ""
+    },
+    trigger: {
+      type: Array,
+      default: () => ['mouseenter']
     }
   }
 }
@@ -51,7 +90,8 @@ export default {
         transform: translateY(-2px);
     }
 }
-.mant-dropdown:hover {
+.mant-dropdown:hover,
+.mant-dropdown .active {
   color: lighten($color: $text-color, $amount: 10);
 }
 .mant-dropdown-menu {

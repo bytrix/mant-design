@@ -20,11 +20,15 @@
         <Button type="primary">Save</Button>
       </div>
     </EditableModal>
-    <!-- <Row>
+
+    <Row>
       <Col :flex="6">
         <Tree
           :data="treeData"
           :draggable="true"
+          :properties="{
+            id: '_id'
+          }"
           @drop="onDrop"
           v-on="{
             expand: onItemClick
@@ -45,7 +49,7 @@
       <Col :flex="4">
         <div class="preview" v-html="marked(content)"></div>
       </Col>
-    </Row> -->
+    </Row>
 
     <Spin :loading="true">
       <Card title="hi">
@@ -60,14 +64,20 @@
       </Card>
     </Spin>
 
+    <Button type="link" href="">
+      baidu
+    </Button>
+
     <Card title="下拉菜单">
       <div style="display: flex; flex-direction: row">
-        <Dropdown :icon="['fal', 'map-marker-alt']" text="Unites State, NY">
-          <DropdownItem text="Shanghai, CN"></DropdownItem>
+        <Dropdown :trigger="['click']" :icon="['fal', 'map-marker-alt']" text="Unites State, NY">
+          <DropdownItem @click="onDropdownItemClick({hello: 'world'})" text="Shanghai, CN"></DropdownItem>
           <DropdownItem text="Tokyo, JP"></DropdownItem>
+          <DropdownItem text="orem orem orem orem orem orem orem orem orem orem orem "></DropdownItem>
         </Dropdown>
-        <Dropdown text="Job Type">
+        <Dropdown :trigger="['click']" text="Job Type">
           <DropdownItem text="Full Time">
+            <DropdownItem text="lorem orem orem orem orem orem orem "></DropdownItem>
             <DropdownItem text="9:00~10:00"></DropdownItem>
             <DropdownItem text="14:00~15:00"></DropdownItem>
           </DropdownItem>
@@ -120,7 +130,7 @@ import Input from '../components/Input'
 import Dropdown from '../components/Dropdown'
 import DropdownItem from '../components/Dropdown/Item'
 import Spin from '../components/Spin'
-// import Tree from '../components/Tree'
+import Tree from '../components/Tree'
 // import TreeButton from '../components/Tree/TreeButton'
 // import Row from '../components/Grid/row'
 // import Col from '../components/Grid/col'
@@ -164,7 +174,7 @@ export default {
             ]
           },
           {
-            "id": "a",
+            "_id": "a",
             "title": "腾讯云Serverless云数据库的使用"
           }
         ]
@@ -197,6 +207,9 @@ export default {
   },
   methods: {
     marked,
+    onDropdownItemClick(item) {
+      alert("你点击了菜单" + JSON.stringify(item))
+    },
     onNoteChange(note) {
       this.note = note
       console.log('this.note', note)
@@ -245,7 +258,7 @@ export default {
     DropdownItem,
     Input,
     Spin,
-    // Tree,
+    Tree,
     Row,
     Col,
     // Modal

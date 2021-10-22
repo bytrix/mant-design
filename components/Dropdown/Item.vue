@@ -4,6 +4,7 @@
         ref="item"
         @mouseleave="showMenu = false"
         @mouseenter="onMouseEnter"
+        @click="onClick"
         class="mant-dropdown-item">
         <div style="display: flex; flex: 1">
             <div class="text">{{text}}</div>
@@ -38,6 +39,9 @@ export default {
             this.menuLeft = itemRef.offsetWidth
             this.menuTop = itemRef.offsetTop
         },
+        onClick() {
+            this.$emit("click")
+        },
         onMenuPopup() {
             console.log("onMenuPopup")
         }
@@ -53,7 +57,6 @@ export default {
 
 <style lang="scss" scoped>
 .mant-dropdown-item {
-    // background-color: #1a1f28;
     padding: 8px 18px 8px 18px;
     min-width: 160px;
     color: $text-color;
@@ -63,6 +66,7 @@ export default {
         margin: 0px 12px;
         display: inline-block;
         flex: 1;
+        white-space: nowrap;
     }
     .chevron-right {
         transform: translateY(5px);
@@ -78,5 +82,4 @@ export default {
 .mant-dropdown-item:hover {
     color:lighten($color: $text-color, $amount: 20);
 }
-
 </style>

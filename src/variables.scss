@@ -2,6 +2,7 @@
 $bg-color: #030303;
 $primary-color: #bbe666;
 $text-color: rgb(124,131,144);
+$text-color-active: lighten($color: $text-color, $amount: 20);
 $text-color-dark: #253615;
 $heading-color: #fbfdfd;
 $block-bg-color: rgb(25,31,40); //1a1f28
