@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <!-- <Modal :visible="showModal" @close="showModal = false">aa</Modal> -->
-    2<Icon style="color: blue" :icon="['fab', 'weixin']" />2
-    <Row hello="world">
-      <Col>
+    <Button @click="showModal = true">show</Button>
+    <Row :gutter="[8, 12]">
+      <Col :flex="1">
         <Card />
       </Col>
-      <!-- <Col>
+      <Col :flex="3">
         <Card />
-      </Col> -->
+      </Col>
     </Row>
     <EditableModal
       :title="note.title"
@@ -20,7 +20,7 @@
         <Button type="primary">Save</Button>
       </div>
     </EditableModal>
-    <Row>
+    <!-- <Row>
       <Col :flex="6">
         <Tree
           :data="treeData"
@@ -31,7 +31,6 @@
           }"
         >
           <template slot-scope="{item}">
-            <!-- <button>{{item.title}}</button> -->
             <Button
               circle
               size="small"
@@ -46,7 +45,7 @@
       <Col :flex="4">
         <div class="preview" v-html="marked(content)"></div>
       </Col>
-    </Row>
+    </Row> -->
 
     <Spin :loading="true">
       <Card title="hi">
@@ -118,14 +117,17 @@ import Card from '../components/Card'
 import Checkbox from '../components/Checkbox'
 import MantText from '../components/Text'
 import Input from '../components/Input'
-import Icon from '../components/Icon'
 import Dropdown from '../components/Dropdown'
 import DropdownItem from '../components/Dropdown/Item'
 import Spin from '../components/Spin'
-import Tree from '../components/Tree'
+// import Tree from '../components/Tree'
 // import TreeButton from '../components/Tree/TreeButton'
-import Row from '../components/Row'
-import Col from '../components/Col'
+// import Row from '../components/Grid/row'
+// import Col from '../components/Grid/col'
+// import {MantRow, MantCol} from '../components/Grid'
+import Row from '../components/Grid/Row'
+import Col from '../components/Grid/Col'
+// console.log('Grid', Grid)
 // import Modal from '../components/Modal'
 import EditableModal from '../components/EditableModal'
 import marked from 'marked'
@@ -243,13 +245,11 @@ export default {
     DropdownItem,
     Input,
     Spin,
-    Tree,
+    // Tree,
     Row,
     Col,
     // Modal
     EditableModal,
-    // TreeButton
-    Icon
   }
 }
 </script>

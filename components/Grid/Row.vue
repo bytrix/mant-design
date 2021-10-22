@@ -1,19 +1,21 @@
 <template>
   <div class="mant-row">
-      {{hello}}1
-      <slot name="h" :hello="hello"></slot>
+      <slot></slot>
   </div>
 </template>
 
 <script>
+import { gridEventBus } from './index'
 export default {
     name: "MantRow",
+    mounted() {
+        gridEventBus.$emit('gutter-received', this.gutter)
+    },
     props: {
         gutter: {
             type: Array,
             default: () => [8,8]
         },
-        hello: {}
     }
 }
 </script>
@@ -21,9 +23,9 @@ export default {
 <style lang="scss">
 .mant-row {
     display: flex;
-    /* background-color: red; */
+    // background-color: red;
     .mant-col {
-        margin: 0px 12px;
+        // flex: 1;
     }
 }
 </style>

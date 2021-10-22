@@ -16,7 +16,8 @@ import MantTabs from '../components/Tabs'
 import MantTag from '../components/Tag'
 import MantText from '../components/Text'
 import MantTree from '../components/Tree'
-// import MantTreeButton from '../components/TreeButton'
+import MantRow from '../components/Grid/Row'
+import MantCol from '../components/Grid/Col'
 
 const components = [
     MantButton,
@@ -35,7 +36,8 @@ const components = [
     MantTag,
     MantText,
     MantTree,
-    MantTreeButton
+    MantRow,
+    MantCol
 ]
 
 const install = (app) => {
