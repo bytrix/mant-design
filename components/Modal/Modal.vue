@@ -62,6 +62,11 @@ export default {
     watch: {
         visible(newVal) {
             this.sVisible = newVal
+            if(newVal) {
+                document.body.style.overflow = 'hidden'
+            } else {
+                document.body.style.overflow = ''
+            }
         }
     },
     methods: {

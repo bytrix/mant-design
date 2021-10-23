@@ -1,10 +1,11 @@
 <template>
-  <div class="mant-dropdown"
+  <div
+    class="mant-dropdown"
+    :class="{active: showMenu}"
     v-on="triggerEvents()"
   >
     <Icon v-if="icon.length !== 0" :icon="icon" :class="{active: showMenu}" />
     <span :class="{text, active: showMenu}">{{text}}</span>
-    <!-- <Icon v-if="$slots.default" class="chevron" size="xs" :icon="['fal', 'chevron-down']" /> -->
     <transition name="slide-fade">
       <div v-show="showMenu" class="mant-dropdown-menu">
         <slot></slot>
@@ -26,6 +27,15 @@ export default {
           showMenu: false,
           id: null
       }
+  },
+  watch: {
+    showMenu(val) {
+      if(val) {
+        document.body.style.overflow = 'hidden'
+      } else {
+        document.body.style.overflow = ''
+      }
+    }
   },
   methods: {
     triggerEvents() {
@@ -83,6 +93,17 @@ export default {
     color: $text-color;
     cursor: pointer;
     transition: $duration;
+    .active::after {
+      content: "";
+      cursor: default;
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: fixed;
+      top: 0px;
+      z-index: 1;
+      left: 0px;
+    }
     .text {
         margin: 0px 12px;
     }
