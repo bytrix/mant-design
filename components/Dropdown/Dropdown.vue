@@ -1,11 +1,11 @@
 <template>
   <div
     class="mant-dropdown"
-    :class="{active: showMenu}"
+    :class="{triggered: showMenu && trigger.indexOf('click') !== -1}"
     v-on="triggerEvents()"
   >
     <Icon v-if="icon.length !== 0" :icon="icon" :class="{active: showMenu}" />
-    <span :class="{text, active: showMenu}">{{text}}</span>
+    <span :class="{text, active: showMenu && trigger.indexOf('click') !== -1}">{{text}}</span>
     <transition name="slide-fade">
       <div v-show="showMenu" class="mant-dropdown-menu">
         <slot></slot>
@@ -93,24 +93,36 @@ export default {
     color: $text-color;
     cursor: pointer;
     transition: $duration;
-    .active::after {
-      content: "";
-      cursor: default;
-      width: 100%;
-      height: 100%;
-      display: block;
-      position: fixed;
-      top: 0px;
-      z-index: 1;
-      left: 0px;
-    }
+    user-select: none;
     .text {
         margin: 0px 12px;
+    }
+    .active::after {
+      content: "";
+      // background-color: red;
+      cursor: default;
+      position: absolute;
+      width: 100px;
+      height: 400px;
+      left: 0px;
+      top: 0px;
+      pointer-events: none;
     }
     .chevron {
         transform: translateY(-2px);
     }
 }
+// .mant-dropdown.triggered::after {
+//   content: "";
+//   cursor: default;
+//   background-color: red;
+//   width: 200px;
+//   height: 400px;
+//   display: block;
+//   position: fixed;
+//   top: 0px;
+//   left: 0px;
+// }
 .mant-dropdown:hover,
 .mant-dropdown .active {
   color: lighten($color: $text-color, $amount: 10);

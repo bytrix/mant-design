@@ -9,13 +9,13 @@ import { treeEventBus } from './index'
 export default {
     mounted() {
         const _this = this
-        treeEventBus.$on('treeItemReceived', e => {
+        treeEventBus.$on('tree-item-received', e => {
             _this.$emit('click', e)
         })
     },
     methods: {
         onClick() {
-            treeEventBus.$emit('treeItemClick')
+            treeEventBus.$emit('tree-item-click')
         }
     }
 }

@@ -85,8 +85,8 @@ export default {
     //     opacity: 0.4;
     //     width: 100%;
     // }
-    .active {
-        background-color: $primary-color;
-    }
+    // .active {
+    //     background-color: $primary-color;
+    // }
 }
 </style>

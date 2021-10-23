@@ -18,7 +18,7 @@
             <Icon v-if="item.children" :icon="['fal', 'chevron-right']" class="chevron-right" />
             <Icon v-else :icon="['fal', 'file-alt']" class="chevron-right" />
             <span class="text">{{item.title}}</span>
-            <div class="add-alt" @click.stop="onTreeItemClick(item)">
+            <div :class="{'item-tools': true}" @click.stop="onTreeItemClick(item)">
                 <!-- 根节点 -->
                 <slot :item="item"></slot>
             </div>
@@ -64,8 +64,8 @@ export default {
         }
     },
     created() {
-        treeEventBus.$on('treeItemClick', () => {
-            treeEventBus.$emit('treeItemReceived', this.item)
+        treeEventBus.$on('tree-item-click', () => {
+            treeEventBus.$emit('tree-item-received', this.item)
         })
         treeEventBus.$on('expand', item => {
             this.currentItem = item
@@ -76,7 +76,7 @@ export default {
     },
     methods: {
         onTreeItemClick() {
-            // treeEventBus.$emit('treeItemClick', item)
+            // treeEventBus.$emit('tree-item-click', item)
         },
         onItemClick(item, expand) {
             if(item.children && expand) {
@@ -154,9 +154,7 @@ export default {
 
 <style lang="scss">
     .item:hover {
-        .add-alt {
-            opacity: 1;
-        }
+        // .item-tools,
     }
     .item {
         background-color: $block-bg-color;
@@ -165,9 +163,13 @@ export default {
         cursor: pointer;
         display: flex;
         z-index: 999;
-        .add-alt {
-            opacity: 0;
+        .item-tools {
+            // opacity: 0.5;
         }
+        // .item-tools.selected {
+        //     // opacity: 1;
+        //     background-color: red;
+        // }
         .indent {
             width: 16px;
             height: 16px;

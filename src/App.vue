@@ -1,6 +1,11 @@
 <template>
   <div id="app">
     <!-- <Modal :visible="showModal" @close="showModal = false">aa</Modal> -->
+
+    <Dropdown :icon="['fal', 'ellipsis-h']" :trigger="['click']" style="display: inline-block; padding: 0px; transform: translateY(2px)">
+      <DropdownItem @click="onItemDelete(1)" text="delete"/>
+    </Dropdown>
+
     <Button type="primary" @click="showModal = true">show</Button>
     <Row :gutter="[8, 12]">
       <Col :flex="1">
@@ -10,6 +15,7 @@
         <Card />
       </Col>
     </Row>
+
     <EditableModal
       :title="note.title"
       :content="note.content"
@@ -34,12 +40,25 @@
             expand: onItemClick
           }"
         >
-          <template slot-scope="{item}">
+          <!-- <template slot-scope="{item}">
             <Button
               circle
               size="small"
               :icon="['fal', 'plus']"
               @click="onItemOp(item)" />
+          </template> -->
+          <template slot-scope="{item}">
+            <Dropdown :icon="['fal', 'ellipsis-h']" :trigger="['click']" style="display: inline-block; padding: 0px; transform: translateY(2px)">
+              <DropdownItem @click="onItemDelete(item)" text="delete"/>
+            </Dropdown>
+            <Button
+              :icon="['fal', 'plus']"
+              size="small"
+              circle
+              type="link"
+              style="margin-right: 0px"
+              @click="onItemOp(item)"
+            />
           </template>
         </Tree>
       </Col>
@@ -206,7 +225,7 @@ export default {
     }
   },
   mounted() {
-    treeEventBus.$on('treeItemClick', item => {
+    treeEventBus.$on('tree-item-click', item => {
         console.log('菜单操作', item)
         if(item) {
           this.note = item
@@ -253,6 +272,9 @@ export default {
       } else {
         console.log("打开文档", item.title)
       }
+    },
+    onItemDelete(item) {
+      console.log('delete ', item)
     },
     onContentChange(e) {
       this.content = e.target.innerText

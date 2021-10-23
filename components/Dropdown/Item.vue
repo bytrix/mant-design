@@ -4,7 +4,7 @@
         ref="item"
         @mouseleave="showMenu = false"
         @mouseenter="onMouseEnter"
-        @click="onClick"
+        @click.stop="onClick"
         class="mant-dropdown-item">
         <div style="display: flex; flex: 1">
             <div class="text">{{text}}</div>
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { dropdownEventBus } from '.'
 import Icon from '../Icon'
 export default {
     name: "MantDropdownItem",
@@ -41,6 +42,7 @@ export default {
         },
         onClick() {
             this.$emit("click")
+            dropdownEventBus.$emit('open-id', null)
         },
         onMenuPopup() {
             console.log("onMenuPopup")
