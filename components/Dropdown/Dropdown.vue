@@ -31,16 +31,18 @@ export default {
   },
   watch: {
     showMenu(val) {
-      if(val) {
-        document.body.style.overflow = 'hidden'
-        const maskDom = document.createElement('div')
-        // maskDom.className = 'mask'
-        maskDom.id = 'mask'
-        document.body.appendChild(maskDom)
-      } else {
-        document.body.style.overflow = ''
-        const maskDom = document.getElementById('mask')
-        document.body.removeChild(maskDom)
+      if(typeof window !== 'undefined') {
+        if(val) {
+          window.document.body.style.overflow = 'hidden'
+          const maskDom = window.document.createElement('div')
+          // maskDom.className = 'mask'
+          maskDom.id = 'mask'
+          window.document.body.appendChild(maskDom)
+        } else {
+          window.document.body.style.overflow = ''
+          const maskDom = window.document.getElementById('mask')
+          window.document.body.removeChild(maskDom)
+        }
       }
     }
   },
@@ -70,9 +72,11 @@ export default {
   created() {
     const _this = this
     this.id = Math.random()
-    document.addEventListener('click', () => {
-      this.showMenu = false
-    })
+    if(typeof window !== 'undefined') {
+      window.document.addEventListener('click', () => {
+        this.showMenu = false
+      })
+    }
     dropdownEventBus.$on('open-id', id => {
       _this.showMenu = _this.id === id
     })
