@@ -338,9 +338,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   margin-top: 60px;
 }
-html {
-  background-color: $bg-color;
-}
 ::selection {
   background-color: darken($color: $text-color, $amount: 30);
 }

@@ -7,23 +7,3 @@ html {
 .mgl8 {
   margin-left: 8px;
 }
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
-
-
-#mask {
-  opacity: 0.5;
-  position: fixed;
-  cursor: default;
-  user-select: none;
-  top: 0px;
-  left: 0px;
-  bottom: 0px;
-  right: 0px;
-  z-index: 1;
-}
