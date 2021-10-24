@@ -91,6 +91,7 @@ export default {
     border-radius: 16px;
     font-weight: bolder;
     user-select: none;
+    transition: $duration;
     .icon {
         margin-right: 8px;
     }
@@ -121,6 +122,12 @@ export default {
 .mant-btn--primary {
     background-color: $primary-color;
     color: $text-color-dark;
+}
+.mant-btn--primary:hover {
+    background-color: lighten($color: $primary-color, $amount: 3);
+}
+.mant-btn--primary:active {
+    background-color: darken($color: $primary-color, $amount: 6);
 }
 .mant-btn--large {
     border-radius: 22px;

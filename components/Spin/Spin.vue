@@ -1,12 +1,15 @@
 <template>
-    <div :class="['mant-spin', {'mask': loading}]" ref="spinRef">
-        <div v-if="loading" class="mant-loading" :style="{
-            top: `${loadingTop}px`,
-            left: `${loadingLeft}px`
-        }">
-            <div class="ball"></div>
-            <div class="ball"></div>
-        </div>
+    <div class="mant-spin" ref="spinRef">
+        <transition name="fade">
+            <div class="mask" v-if="loading">
+                <div v-if="loading" class="mant-loading" :style="{
+                    'margin-top': `${loadingTop}px`,
+                }">
+                    <div class="ball"></div>
+                    <div class="ball"></div>
+                </div>
+            </div>
+        </transition>
         <slot></slot>
     </div>
 </template>
@@ -35,25 +38,21 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .mant-spin {
     position: relative;
-    user-select: none;
 }
-.mask::after {
-    content: "";
+.mask {
     background-color: rgba(0,0,0,0.75);
-    transition: $duration;
+    text-align: center;
     width: 100%;
     height: 100%;
     display: inline-block;
     position: absolute;
-    top: 0px;
     left: 0px;
 }
 .mant-loading {
     z-index: 1;
-    position: absolute;
     animation: loading-rotate 1.8s infinite cubic-bezier(0.77, 0, 0.19, 0.99);
     display: inline-block;
     .ball {
@@ -105,5 +104,6 @@ export default {
             transform: rotate(360deg);
         }
     }
+
 }
 </style>

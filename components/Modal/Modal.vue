@@ -1,6 +1,5 @@
 <template>
     <div class="mant-modal">
-            maskClosable: {{maskClosable}}
         <transition name="slide-fade">
             <Card
                 v-show="sVisible"
@@ -94,6 +93,7 @@ export default {
         position: relative;
     }
     .mask {
+        background-color: rgba(0,0,0,0.75);
         position: fixed;
         top: 0px;
         bottom: 0px;

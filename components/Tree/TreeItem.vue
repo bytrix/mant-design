@@ -18,9 +18,12 @@
             <Icon v-if="item.children" :icon="['fal', 'chevron-right']" class="chevron-right" />
             <Icon v-else :icon="['fal', 'file-alt']" class="chevron-right" />
             <span class="text">{{item.title}}</span>
-            <div :class="{'item-tools': true}" @click.stop="onTreeItemClick(item)">
+            <div :class="{'item-tools': true}" @click.prevent="onTreeItemClick(item)">
                 <!-- 根节点 -->
+                <!-- <div style="z-index: 2"> -->
+
                 <slot :item="item"></slot>
+                <!-- </div> -->
             </div>
         </div>
 
@@ -164,7 +167,9 @@ export default {
         display: flex;
         z-index: 999;
         .item-tools {
+            // TODO: fix hover transition when DropdownItem opened
             // opacity: 0.5;
+            z-index: 2;
         }
         // .item-tools.selected {
         //     // opacity: 1;

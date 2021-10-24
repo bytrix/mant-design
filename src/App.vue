@@ -7,6 +7,7 @@
     </Dropdown>
 
     <Button type="primary" @click="showModal = true">show</Button>
+    <Button type="primary" @click="loading = !loading">loading: {{loading}}</Button>
     <Row :gutter="[8, 12]">
       <Col :flex="1">
         <Card />
@@ -70,7 +71,7 @@
       </Col>
     </Row>
 
-    <Spin :loading="true">
+    <Spin :loading="loading">
       <Card title="hi">
         测试
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae sunt vero, quas quo, et perferendis exercitationem cumque quae explicabo deserunt beatae? Itaque repellendus quisquam excepturi praesentium tempore explicabo molestiae nobis.
@@ -110,7 +111,7 @@
       </div>
     </Card>
 
-    <Spin :loading="true">
+    <Spin :loading="false">
       <Input />
       <Input size="large" />
       <Button>按钮</Button>
@@ -168,6 +169,7 @@ export default {
   data() {
     return {
       content: "# Hello, world!",
+      loading: false,
       showModal: false,
       note: {},
       treeData: [

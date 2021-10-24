@@ -11,6 +11,7 @@
         <slot></slot>
       </div>
     </transition>
+    <!-- <div class="mask" v-if="showMenu">x</div> -->
   </div>
 </template>
 
@@ -32,8 +33,14 @@ export default {
     showMenu(val) {
       if(val) {
         document.body.style.overflow = 'hidden'
+        const maskDom = document.createElement('div')
+        // maskDom.className = 'mask'
+        maskDom.id = 'mask'
+        document.body.appendChild(maskDom)
       } else {
         document.body.style.overflow = ''
+        const maskDom = document.getElementById('mask')
+        document.body.removeChild(maskDom)
       }
     }
   },
@@ -88,6 +95,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.mask {
+  // width: 100%;
+  // height: 100%;
+  background-color: red;
+  opacity: 0.5;
+  position: fixed;
+  cursor: default;
+  user-select: none;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  z-index: 1;
+}
 .mant-dropdown {
     padding: 8px 18px;
     color: $text-color;
@@ -97,17 +118,18 @@ export default {
     .text {
         margin: 0px 12px;
     }
-    .active::after {
-      content: "";
-      // background-color: red;
-      cursor: default;
-      position: absolute;
-      width: 100px;
-      height: 400px;
-      left: 0px;
-      top: 0px;
-      pointer-events: none;
-    }
+    // .active::after {
+    //   content: "";
+    //   background-color: red;
+    //   cursor: default;
+    //   position: fixed;
+    //   width: 100%;
+    //   height: 600px;
+    //   left: 0px;
+    //   top: 0px;
+    //   pointer-events: none;
+    //   z-index: 1;
+    // }
     .chevron {
         transform: translateY(-2px);
     }
@@ -135,7 +157,7 @@ export default {
     flex-direction: column;
     position: absolute;
     transform: translate(-18px, 8px);
-    z-index: 1;
+    z-index: 2;
 }
 
 .slide-fade-enter-active {
