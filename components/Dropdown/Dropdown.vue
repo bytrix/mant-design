@@ -4,7 +4,7 @@
     :class="{triggered: showMenu && trigger.indexOf('click') !== -1}"
     v-on="triggerEvents()"
   >
-    <Icon v-if="icon.length !== 0" :icon="icon" :class="{active: showMenu}" />
+    <Icon v-if="icon.length !== 0" :icon="icon" :class="{active: showMenu}" style="width: 16px" />
     <span :class="{text, active: showMenu && trigger.indexOf('click') !== -1}">{{text}}</span>
     <transition name="slide-fade">
       <div v-show="showMenu" class="mant-dropdown-menu">

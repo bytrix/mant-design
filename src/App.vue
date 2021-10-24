@@ -15,7 +15,37 @@
       <Col :flex="3">
         <Card />
       </Col>
+      <Col flex="none">
+        <Card />
+      </Col>
     </Row>
+
+
+    <Row :gutter="[8, 12]">
+      <Col :flex="1">
+        <div style="background-color: blue; height: 24px"></div>
+      </Col>
+      <Col :flex="3">
+        <div style="background-color: blue; height: 24px"></div>
+      </Col>
+      <Col :flex="2">
+        <div style="background-color: blue; height: 24px"></div>
+      </Col>
+    </Row>
+
+
+    <Row :gutter="[8, 24]">
+      <Col :flex="1">
+        <div style="background-color: blue; height: 24px"></div>
+      </Col>
+      <Col :flex="3">
+        <div style="background-color: blue; height: 24px"></div>
+      </Col>
+      <Col :flex="2">
+        <div style="background-color: blue; height: 24px"></div>
+      </Col>
+    </Row>
+
 
     <EditableModal
       :title="note.title"
@@ -49,7 +79,7 @@
               @click="onItemOp(item)" />
           </template> -->
           <template slot-scope="{item}">
-            <Dropdown :icon="['fal', 'ellipsis-h']" :trigger="['click']" style="display: inline-block; padding: 0px; transform: translateY(2px)">
+            <Dropdown :icon="['fal', 'ellipsis-v']" :trigger="['click']" style="display: inline-block; padding: 0px; transform: translateY(2px)">
               <DropdownItem @click="onItemDelete(item)" text="delete"/>
             </Dropdown>
             <Button

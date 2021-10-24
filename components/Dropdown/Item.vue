@@ -6,6 +6,7 @@
         @mouseenter="onMouseEnter"
         @click.stop="onClick"
         class="mant-dropdown-item">
+        <Icon v-if="icon && icon.length !== 0" :icon="icon" style="transform: translateY(3px)" />
         <div style="display: flex; flex: 1">
             <div class="text">{{text}}</div>
             <Icon v-if="$slots.default" :icon="['fal', 'chevron-right']" class="chevron-right" size="xs" />
@@ -53,6 +54,10 @@ export default {
             type: String,
             default: ""
         },
+        icon: {
+            type: Array,
+            default: () => []
+        }
     }
 }
 </script>

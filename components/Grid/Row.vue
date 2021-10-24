@@ -8,13 +8,15 @@
 import { gridEventBus } from './index'
 export default {
     name: "MantRow",
-    mounted() {
-        gridEventBus.$emit('gutter-received', this.gutter)
+    created() {
+        if(this.gutter) {
+            gridEventBus.$emit('gutter-received', this.gutter)
+        }
     },
     props: {
         gutter: {
             type: Array,
-            default: () => [8,8]
+            default: undefined
         },
     }
 }

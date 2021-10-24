@@ -23,8 +23,10 @@ export default {
     },
     props: {
         flex: {
-            type: Number,
-            default: 0
+            type: [Number, String],
+            default() {
+              return 0
+            }
         }
     }
 }
