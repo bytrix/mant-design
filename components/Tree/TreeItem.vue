@@ -109,9 +109,10 @@ export default {
             }
         },
         onDrop(e) {
-            console.log("onDrop", e)
+            // console.log("onDrop", e)
             const oldId = e.dataTransfer.getData('id')
             const newId = e.target.id
+            console.log('oldId - newId', oldId, newId)
             treeEventBus.$emit("drop", oldId, newId)
             if(e.target.className.indexOf('item') !== -1) {
                 e.target.className = 'item'

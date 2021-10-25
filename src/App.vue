@@ -6,12 +6,22 @@
 
     <Button type="primary" @click="showModal = true">show</Button>
     <Button type="primary" @click="loading = !loading">loading: {{loading}}</Button>
+
+    <Icon :icon="['fal', 'plus']" />
+    <Icon :icon="['fab', 'windows']" />
+    <Icon :icon="['fas', 'caret-up']" />
+
     <Row :gutter="[8, 12]">
       <Col :flex="1">
         <Card />
       </Col>
       <Col :flex="3">
-        <Card />
+        <Card>
+          <Tooltip title="hhh8888hhh8888hhh8888hhh8888hhh8888hhh8888hhh8888hhh8888hhh8888">
+            <Button>demo1</Button>
+          </Tooltip>
+          <Button>demo2</Button>
+        </Card>
       </Col>
       <Col flex="none">
         <Card />
@@ -75,7 +85,7 @@
               circle
               type="link"
               style="margin-right: 0px"
-              @click="onItemOp(item)"
+              @click.stop="onItemOp(item)"
             />
           </template>
         </Tree>
@@ -171,6 +181,8 @@ import Tree from '../components/Tree'
 import Row from '../components/Grid/Row'
 import Col from '../components/Grid/Col'
 import EditableModal from '../components/EditableModal'
+import Tooltip from '../components/Tooltip'
+import Icon from '../components/Icon'
 import marked from 'marked'
 import { treeEventBus } from '../components/Tree'
 
@@ -275,6 +287,8 @@ export default {
     Row,
     Col,
     EditableModal,
+    Icon,
+    Tooltip
   }
 }
 </script>
