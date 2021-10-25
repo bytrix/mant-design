@@ -23,6 +23,7 @@
 <script>
 import TreeItem from './TreeItem.vue'
 import { treeEventBus } from './index'
+import { deepFind, deepSplice } from '../../src/utils'
 export default {
     name: "MantTree",
     data() {
@@ -39,7 +40,8 @@ export default {
             this.$emit("add", item)
         })
         treeEventBus.$on("drop", (oldId, newId) => {
-            this.$emit("drop", oldId, newId)
+            // this.$emit("drop", oldId, newId)
+            this.onDrop(oldId, newId)
         })
     },
     props: {
@@ -67,6 +69,17 @@ export default {
         onItemClick(item) {
             this.$emit("expand", item)
         },
+
+        onDrop(oldId, newId) {
+            const oldIndexList = oldId.split('-')
+            const newIndexList = newId.split('-')
+            const oldObj = deepFind(this.data, oldIndexList)
+            // 删除旧项
+            deepSplice(this.data, oldIndexList, 1)
+            // 添加新项
+            deepSplice(this.data, newIndexList, 0, oldObj)
+        },
+        
     }
 }
 </script>

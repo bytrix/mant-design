@@ -1,34 +1,26 @@
-# mant-design
+# Mant Design
 
-## Project setup
-```
-npm install
-```
+Dark theme UI component for Vue.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+![npm](https://img.shields.io/npm/v/mant-design)
+![GitHub](https://img.shields.io/github/license/bytrix/mant-design)
 
-### Compiles and minifies for production
+## Install
 ```
-npm run build
+npm install mant-design
 ```
 
-### Run your unit tests
+## Usage
 ```
-npm run test:unit
+import Vue from 'vue'
+import MantDesign from 'mant-design'
+import 'mant-design/lib/mant-design.css'
+Vue.use(MantDesign)
 ```
-
-### Run your end-to-end tests
+Use button in vue component:
 ```
-npm run test:e2e
-```
-
-### Lints and fixes files
-```
-npm run lint
+<MantButton>button</MantButton>
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Doc
+[Mant Design Doc](https://bytrix.github.io/mant-doc)

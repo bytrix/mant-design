@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <!-- <Modal :visible="showModal" @close="showModal = false">aa</Modal> -->
-
     <Dropdown :icon="['fal', 'ellipsis-h']" :trigger="['click']" style="display: inline-block; padding: 0px; transform: translateY(2px)">
       <DropdownItem @click="onItemDelete(1)" text="delete"/>
     </Dropdown>
@@ -20,7 +18,6 @@
       </Col>
     </Row>
 
-
     <Row :gutter="[8, 12]">
       <Col :flex="1">
         <div style="background-color: blue; height: 24px"></div>
@@ -33,7 +30,6 @@
       </Col>
     </Row>
 
-
     <Row :gutter="[8, 24]">
       <Col :flex="1">
         <div style="background-color: blue; height: 24px"></div>
@@ -45,7 +41,6 @@
         <div style="background-color: blue; height: 24px"></div>
       </Col>
     </Row>
-
 
     <EditableModal
       :title="note.title"
@@ -66,18 +61,10 @@
           :properties="{
             id: '_id'
           }"
-          @drop="onDrop"
           v-on="{
             expand: onItemClick
           }"
         >
-          <!-- <template slot-scope="{item}">
-            <Button
-              circle
-              size="small"
-              :icon="['fal', 'plus']"
-              @click="onItemOp(item)" />
-          </template> -->
           <template slot-scope="{item}">
             <Dropdown :icon="['fal', 'ellipsis-v']" :trigger="['click']" style="display: inline-block; padding: 0px; transform: translateY(2px)">
               <DropdownItem @click="onItemDelete(item)" text="delete"/>
@@ -181,17 +168,10 @@ import Dropdown from '../components/Dropdown'
 import DropdownItem from '../components/Dropdown/Item'
 import Spin from '../components/Spin'
 import Tree from '../components/Tree'
-// import TreeButton from '../components/Tree/TreeButton'
-// import Row from '../components/Grid/row'
-// import Col from '../components/Grid/col'
-// import {MantRow, MantCol} from '../components/Grid'
 import Row from '../components/Grid/Row'
 import Col from '../components/Grid/Col'
-// console.log('Grid', Grid)
-// import Modal from '../components/Modal'
 import EditableModal from '../components/EditableModal'
 import marked from 'marked'
-import { deepFind, deepSplice } from './utils'
 import { treeEventBus } from '../components/Tree'
 
 export default {
@@ -208,7 +188,20 @@ export default {
           "title": "第一条笔记",
           "content": "你好，世界",
           "create_time": "2021-10-22 16:37:36",
-          "update_time": "2021-10-22 16:37:36"
+          "update_time": "2021-10-22 16:37:36",
+          "children": [
+            {
+              "_id": "1",
+              "title": "T",
+              "content": "C",
+              "children": [
+                {
+                  "_id": "2",
+                  "title": "222",
+                }
+              ]
+            }
+          ]
         },
         {
           "_id": "18ed09686172e8d00159b4404d5a0832",
@@ -225,49 +218,6 @@ export default {
           "update_time": "2021-10-22 16:37:36"
         }
       ]
-      // treeData: [{
-      //   "_id": "859059a5616e09b400ae84dd1f3a4cd3",
-      //   "title": "前端笔记",
-      //   "parent_id": null,
-      //   "children": [
-      //     {
-      //       "_id": "fa24ce1a616e0a4700c3c1783bec9413",
-      //       "parent_id": "859059a5616e09b400ae84dd1f3a4cd3",
-      //       "title": "JS原型链基础",
-      //       "children": [
-      //         {
-      //           "_id": "1",
-      //           "title": "测试",
-      //           "children": [
-      //             {
-      //               "_id": "2",
-      //               "title": "再测试"
-      //             }
-      //           ]
-      //         }
-      //       ]
-      //     },
-      //     {
-      //       "_id": "a",
-      //       "title": "腾讯云Serverless云数据库的使用"
-      //     }
-      //   ]
-      // }, {
-      //   "_id": "9e7190f1616e09d600ad803a3ee5b634",
-      //   "title": "人工智能",
-      //   "parent_id": null,
-      //   "children": [
-      //     {
-      //       "_id": "859059a5616e0a7a00ae9f907d004593",
-      //       "parent_id": "9e7190f1616e09d600ad803a3ee5b634",
-      //       "title": "傅立叶学习"
-      //     }
-      //   ]
-      // }, {
-      //   "_id": "fa24ce1a616e09e600c3b38d4ad835d7",
-      //   "title": "个人项目",
-      //   "parent_id": null
-      // }]
     }
   },
   mounted() {
@@ -289,26 +239,12 @@ export default {
       console.log('this.note', note)
     },
     onItemOp(item) {
-      // console.log('onItemOp', e.title)
       this.showModal = true
       this.note = item
-    },
-    onDrop(oldId, newId) {
-      const oldIndexList = oldId.split('-')
-      const newIndexList = newId.split('-')
-      const oldObj = deepFind(this.treeData, oldIndexList)
-      // 删除旧项
-      deepSplice(this.treeData, oldIndexList, 1)
-      // 添加新项
-      deepSplice(this.treeData, newIndexList, 0, oldObj)
     },
     openModal() {
       this.showModal = true
     },
-    // onItemOp(item) {
-    //   console.log("onAdd", item.title)
-    //   this.showModal = true
-    // },
     makeTree(data) {
       return data
     },
@@ -338,7 +274,6 @@ export default {
     Tree,
     Row,
     Col,
-    // Modal
     EditableModal,
   }
 }
