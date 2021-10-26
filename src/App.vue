@@ -7,13 +7,18 @@
     <Button type="primary" @click="showModal = true">show</Button>
     <Button type="primary" @click="loading = !loading">loading: {{loading}}</Button>
 
-    <Icon :icon="['fal', 'plus']" />
-    <Icon :icon="['fab', 'windows']" />
-    <Icon :icon="['fas', 'caret-up']" />
 
     <Row :gutter="[8, 12]">
       <Col :flex="1">
-        <Card />
+        <Card>
+          <Button plain circle :icon="['fal', 'user']"></Button>
+          <Tooltip title="ss">
+            <Icon :icon="['fal', 'plus']" />
+          </Tooltip>
+          <Icon :icon="['fab', 'windows']" />
+          <Icon :icon="['fas', 'caret-up']" />
+        </Card>
+        
       </Col>
       <Col :flex="3">
         <Card>
@@ -28,27 +33,42 @@
       </Col>
     </Row>
 
+    [8,12]
     <Row :gutter="[8, 12]">
       <Col :flex="1">
-        <div style="background-color: blue; height: 24px"></div>
+        <div style="background-color: #222c34; height: 24px"></div>
       </Col>
       <Col :flex="3">
-        <div style="background-color: blue; height: 24px"></div>
+        <div style="background-color: #222c34; height: 24px"></div>
       </Col>
       <Col :flex="2">
-        <div style="background-color: blue; height: 24px"></div>
+        <div style="background-color: #222c34; height: 24px"></div>
       </Col>
     </Row>
 
+    [8,24]
     <Row :gutter="[8, 24]">
       <Col :flex="1">
-        <div style="background-color: blue; height: 24px"></div>
+        <div style="background-color: #222c34; height: 24px"></div>
       </Col>
       <Col :flex="3">
-        <div style="background-color: blue; height: 24px"></div>
+        <div style="background-color: #222c34; height: 24px"></div>
       </Col>
       <Col :flex="2">
-        <div style="background-color: blue; height: 24px"></div>
+        <div style="background-color: #222c34; height: 24px"></div>
+      </Col>
+    </Row>
+
+    [12,48]
+    <Row :gutter="[12, 48]">
+      <Col :flex="1">
+        <div style="background-color: #222c34; height: 24px"></div>
+      </Col>
+      <Col :flex="3">
+        <div style="background-color: #222c34; height: 24px"></div>
+      </Col>
+      <Col :flex="2">
+        <div style="background-color: #222c34; height: 24px"></div>
       </Col>
     </Row>
 
@@ -89,6 +109,8 @@
             />
           </template>
         </Tree>
+
+        
       </Col>
       <Col :flex="4">
         <textarea class="editor" contenteditable v-model="content"></textarea>
@@ -139,14 +161,23 @@
     </Card>
 
     <Spin :loading="false">
-      <Input />
-      <Input size="large" />
-      <Button>按钮</Button>
-      <Button type="primary">按钮</Button>
-      <Button type="primary" :icon="['fal', 'plus']">新建</Button>
-      <Button type="primary" :icon="['fal', 'plus']" size="large">大号</Button>
-      <MantText type="primary">文本</MantText>
+      <Card>
+        <Input />
+        <Input size="large" />
+        <Button>按钮</Button>
+        <Button type="primary">按钮</Button>
+        <Button type="primary" :icon="['fal', 'plus']">新建</Button>
+        <Button type="primary" :icon="['fal', 'plus']" size="large">大号</Button>
+        <MantText type="primary">文本</MantText>
+        <Checkbox>前端</Checkbox>
+        <Checkbox>后端</Checkbox>
+        <Checkbox>算法</Checkbox>
+        <Checkbox>设计</Checkbox>
+      </Card>
     </Spin>
+    <Card>
+      <Card>1</Card>
+    </Card>
     <Card>
       <template slot="header">
         <div class="title">aa</div>
@@ -161,10 +192,7 @@
         </Button>
       </div>
     </Card>
-    <Checkbox>前端</Checkbox>
-    <Checkbox>后端</Checkbox>
-    <Checkbox>算法</Checkbox>
-    <Checkbox>设计</Checkbox>
+    
   </div>
 </template>
 

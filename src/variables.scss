@@ -7,7 +7,8 @@ $text-color-dark: #253615;
 $heading-color: #fbfdfd;
 $block-bg-color: rgb(25,31,40); //1a1f28
 $block-bg-color-secondary: rgb(34,44,52); //222c34
-$border-color: #24282d;
+// $border-color: #24282d;
+$border-color: rgba($text-color, 0.2);
 
 // size
 $border-radius: 18px;

@@ -13,6 +13,7 @@
 
 <script>
 export default {
+    name: "MantTooltip",
     props: {
         title: {
             type: String,
@@ -38,16 +39,12 @@ export default {
             this.show = true
         }
     },
-    mounted() {
-        // console.log(target.offsetWidth, target)
-    }
 }
 </script>
 
 <style lang="scss">
 $tooltip-bg: darken($block-bg-color, 5);
 .mant-tooltip-wrapper {
-    // background-color: red;
     display: inline-block;
 }
 .mant-tooltip {

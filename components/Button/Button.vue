@@ -106,7 +106,7 @@ export default {
 }
 .mant-btn--plain {
     background-color: transparent !important;
-    border: 1px solid $border-color;
+    border: 1px solid rgba($text-color, 0.4);
 }
 .mant-btn--default {
     background-color: lighten($color: $block-bg-color, $amount: 6);

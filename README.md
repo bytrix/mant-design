@@ -11,7 +11,7 @@ Dark theme UI component for Vue.
 
 ## Install
 ```
-npm install mant-design
+npm install --save mant-design
 ```
 
 ## Usage

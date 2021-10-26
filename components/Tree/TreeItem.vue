@@ -15,7 +15,14 @@
             }"
         >
             <span v-for="i in indent" :key="i" class="indent"></span>
-            <Icon v-if="item.children" :icon="['fal', 'chevron-right']" class="chevron-right" />
+            <Icon
+                v-if="item.children"
+                :icon="['fal', 'chevron-right']"
+                class="chevron-right"
+                :style="{
+                    transform: (collapsed ? 'rotate(0deg)' : 'rotate(90deg)') + ' translateY(3px)'
+                }"
+            />
             <Icon v-else :icon="['fal', 'file-alt']" class="chevron-right" />
             <span class="text">{{item.title}}</span>
             <div :class="{'item-tools': true}" @click.prevent="onTreeItemClick(item)">
@@ -27,7 +34,7 @@
             </div>
         </div>
 
-        <template v-if="collapsed">
+        <template v-if="!collapsed">
             <div v-for="(subItem, deepIndex) in item.children" :key="subItem[properties.id]">
                 <TreeItem
                     :item="subItem"
@@ -61,7 +68,7 @@ export default {
     data() {
         return {
             newIndent: this.indent + 1,
-            collapsed: false,
+            collapsed: true,
             overTargetId: "",
             currentItem: {}
         }
@@ -89,7 +96,7 @@ export default {
         },
         onItemAdd(item) {
             if(item.children && !this.collapsed) {
-                this.collapsed = true
+                this.collapsed = false
             }
             treeEventBus.$emit("add", item)
         },
@@ -188,6 +195,8 @@ export default {
         }
         .chevron-right {
             transform: translateY(4px);
+            transition: $duration;
+            transform-origin:20% 60%;
         }
     }
     .item-drag--active {

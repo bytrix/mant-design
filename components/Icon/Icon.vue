@@ -12,10 +12,10 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 library.add(fal, fab, fas)
 
-console.log('FontAwesomeIcon', FontAwesomeIcon)
+// console.log('FontAwesomeIcon', FontAwesomeIcon)
 
 export default {
-    name: "Icon",
+    name: "MantIcon",
     props: {
         icon: {
             type: Array,

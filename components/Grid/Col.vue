@@ -8,18 +8,12 @@
 </template>
 
 <script>
-import { gridEventBus } from './index'
 export default {
     name: "MantCol",
-    data() {
-      return {
-        gutter: []
+    computed: {
+      gutter() {
+        return this.$parent.gutter || []
       }
-    },
-    beforeCreate() {
-      gridEventBus.$on('gutter-received', gutter => {
-        this.gutter = gutter
-      })
     },
     props: {
         flex: {

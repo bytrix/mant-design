@@ -20,7 +20,8 @@ export default {
 
 <style lang="scss">
 .mant-input {
-    background-color: transparent;
+    // background-color: transparent;
+    background-color: $block-bg-color-secondary;
     border: 1px solid $border-color;
     height: 28px;
     border-radius: 14px;
@@ -35,7 +36,7 @@ export default {
     border-radius: 20px;
     font-size: $font-size-lg;
 }
-.mant-input:hover, .mant-input:focus {
-    /* border-color: #bbe666; */
+.mant-input:focus {
+    border-color: $primary-color;
 }
 </style>

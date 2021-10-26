@@ -43,13 +43,14 @@ export default {
     position: relative;
 }
 .mask {
-    background-color: rgba(0,0,0,0.75);
+    background-color: rgba(0, 0, 0, 0.5);
     text-align: center;
     width: 100%;
     height: 100%;
     display: inline-block;
     position: absolute;
     left: 0px;
+    z-index: 1;
 }
 .mant-loading {
     z-index: 1;
